@@ -1,5 +1,5 @@
 export interface RawSignal {
-  source: 'google-trends' | 'reddit' | 'arxiv' | 'moltbook';
+  source: 'google-trends' | 'reddit' | 'arxiv' | 'moltbook' | 'twitter';
   source_id: string;
   title: string;
   content: string;
@@ -9,6 +9,7 @@ export interface RawSignal {
   score: number;
   tags: string[];
   published_at: string; // ISO 8601
+  velocity?: number;
 }
 
 export interface Insight {
@@ -17,6 +18,7 @@ export interface Insight {
   summary: string;
   sources: string[]; // raw_signals IDs
   confidence: number; // 0-1
+  priority?: 'p0' | 'p1' | 'p2';
 }
 
 export interface ScraperResult {

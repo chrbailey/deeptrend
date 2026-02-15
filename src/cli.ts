@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { Command } from 'commander';
-import { scrapeGoogleTrends, scrapeReddit, scrapeArxiv, scrapeMoltbook } from './scrapers/index.js';
+import { scrapeGoogleTrends, scrapeReddit, scrapeArxiv, scrapeMoltbook, scrapeTwitter, loginToTwitter } from './scrapers/index.js';
 import { upsertSignals } from './db/supabase.js';
 import { runAnalysis, runResearch } from './analyzer/analyze.js';
 import type { ScraperResult } from './scrapers/types.js';
@@ -10,13 +10,14 @@ const program = new Command();
 program
   .name('deeptrend')
   .description('Trend intelligence pipeline — scrapes, analyzes, researches')
-  .version('0.1.0');
+  .version('0.2.0');
 
 program
   .command('scrape')
   .description('Scrape all sources and store raw signals in Supabase')
-  .option('--source <source>', 'Scrape a specific source only (google-trends, reddit, arxiv, moltbook)')
-  .action(async (opts: { source?: string }) => {
+  .option('--source <source>', 'Scrape a specific source only (google-trends, reddit, arxiv, moltbook, twitter)')
+  .option('--headed', 'Run browser scrapers in headed mode (visible window)')
+  .action(async (opts: { source?: string; headed?: boolean }) => {
     console.log('Starting scrape...');
     const start = Date.now();
 
@@ -25,6 +26,7 @@ program
       { name: 'reddit', fn: scrapeReddit },
       { name: 'arxiv', fn: scrapeArxiv },
       { name: 'moltbook', fn: scrapeMoltbook },
+      { name: 'twitter', fn: () => scrapeTwitter({ headed: opts.headed }) },
     ];
 
     const toRun = opts.source
@@ -85,7 +87,8 @@ program
     if (insights.length > 0) {
       console.log('\nTop insights:');
       for (const insight of insights.slice(0, 5)) {
-        console.log(`  [${insight.insight_type}] ${insight.topic} (confidence: ${insight.confidence})`);
+        const prio = insight.priority ? `[${insight.priority}]` : '';
+        console.log(`  ${prio}[${insight.insight_type}] ${insight.topic} (confidence: ${insight.confidence})`);
         console.log(`    ${insight.summary}\n`);
       }
     }
@@ -123,7 +126,8 @@ program
     console.log(`\nDone in ${elapsed}s: ${insights.length} insights`);
 
     for (const insight of insights) {
-      console.log(`\n[${insight.insight_type}] ${insight.topic} (confidence: ${insight.confidence})`);
+      const prio = insight.priority ? `[${insight.priority}]` : '';
+      console.log(`\n${prio}[${insight.insight_type}] ${insight.topic} (confidence: ${insight.confidence})`);
       console.log(`  ${insight.summary}`);
     }
 
@@ -134,6 +138,13 @@ program
       }
       process.exit(1);
     }
+  });
+
+program
+  .command('login')
+  .description('Open browser for manual X/Twitter login — saves session to persistent Chrome profile')
+  .action(async () => {
+    await loginToTwitter();
   });
 
 program

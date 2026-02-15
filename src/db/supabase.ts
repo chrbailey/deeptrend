@@ -108,6 +108,18 @@ export async function getLastAnalysisTime(): Promise<Date | null> {
   return new Date(data[0].analyzed_at);
 }
 
+export async function getSignalCountsByTopic(since: Date, until: Date): Promise<Array<{ tags: string[] }>> {
+  const db = getClient();
+  const { data, error } = await db
+    .from('raw_signals')
+    .select('tags')
+    .gte('scraped_at', since.toISOString())
+    .lt('scraped_at', until.toISOString());
+
+  if (error) throw new Error(`Failed to fetch signal tags: ${error.message}`);
+  return data ?? [];
+}
+
 export async function searchInsights(query: string, limit = 10): Promise<Insight[]> {
   const db = getClient();
   // Text search fallback — pgvector semantic search requires embedding generation

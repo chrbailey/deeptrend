@@ -1,31 +1,78 @@
 import type { RawSignal, Insight } from '../scrapers/types.js';
 import { getSignalsSince, getLastAnalysisTime, insertInsights } from '../db/supabase.js';
+import { computeVelocity, formatHotTopics } from '../scoring/velocity.js';
 
 const CLAUDE_CLI = process.env.CLAUDE_CLI || 'claude';
 
-function buildPrompt(signals: RawSignal[]): string {
+interface TagAggregate {
+  tag: string;
+  count: number;
+  avgScore: number;
+}
+
+function aggregateByTag(signals: RawSignal[], topN = 5): TagAggregate[] {
+  const tagMap = new Map<string, { count: number; totalScore: number }>();
+  for (const s of signals) {
+    for (const tag of s.tags) {
+      const t = tag.toLowerCase();
+      const entry = tagMap.get(t) ?? { count: 0, totalScore: 0 };
+      entry.count++;
+      entry.totalScore += s.score;
+      tagMap.set(t, entry);
+    }
+  }
+
+  return [...tagMap.entries()]
+    .map(([tag, { count, totalScore }]) => ({
+      tag,
+      count,
+      avgScore: Math.round(totalScore / count),
+    }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, topN);
+}
+
+export function buildPrompt(signals: RawSignal[], hotTopics = ''): string {
   const grouped: Record<string, RawSignal[]> = {};
   for (const s of signals) {
     if (!grouped[s.source]) grouped[s.source] = [];
     grouped[s.source].push(s);
   }
 
-  let prompt = `You are a trend intelligence analyst. Analyze these signals from 4 sources and produce structured insights.
+  const sourceCount = Object.keys(grouped).length;
 
-## Signals by Source
+  let prompt = `You are a trend intelligence analyst. Analyze these aggregated signals from ${sourceCount} sources and produce prioritized insights.
+
+## Signals by Source (compressed)
 
 `;
 
   for (const [source, items] of Object.entries(grouped)) {
-    prompt += `### ${source} (${items.length} signals)\n\n`;
-    for (const item of items.slice(0, 30)) {
-      prompt += `- **${item.title}** (score: ${item.score}, author_type: ${item.author_type})\n`;
-      if (item.content && item.content !== item.title) {
-        const preview = item.content.slice(0, 200);
-        prompt += `  ${preview}${item.content.length > 200 ? '...' : ''}\n`;
-      }
-      prompt += `  tags: ${item.tags.join(', ')}\n\n`;
+    // Group items by their primary tag (first tag) for sub-grouping
+    const subGroups: Record<string, RawSignal[]> = {};
+    for (const item of items) {
+      const key = item.tags[0] ?? 'general';
+      if (!subGroups[key]) subGroups[key] = [];
+      subGroups[key].push(item);
     }
+
+    const subGroupCount = Object.keys(subGroups).length;
+    prompt += `### ${source} (${items.length} signals across ${subGroupCount} groups)\n`;
+
+    for (const [group, groupItems] of Object.entries(subGroups)) {
+      const topTags = aggregateByTag(groupItems, 3);
+      const topTopics = topTags.map((t) => `${t.tag} (${t.count})`).join(', ');
+      const authorTypes = new Set(groupItems.map((i) => i.author_type));
+      const authorStr = [...authorTypes].join('+');
+      prompt += `- ${group} (${groupItems.length}, ${authorStr}): Top topics: ${topTopics || 'none'}\n`;
+    }
+
+    prompt += '\n';
+  }
+
+  if (hotTopics) {
+    prompt += hotTopics;
+    prompt += '\n';
   }
 
   prompt += `## Analysis Instructions
@@ -33,8 +80,15 @@ function buildPrompt(signals: RawSignal[]): string {
 Identify:
 1. **Emerging trends** — topics appearing across multiple sources
 2. **Agent consensus** — what Moltbook agents are converging on
-3. **Agent-vs-human divergence** — where agent discussions (Moltbook) differ from human discussions (Reddit, arXiv)
+3. **Agent-vs-human divergence** — where agent discussions (Moltbook) differ from human discussions (Reddit, arXiv, Twitter)
 4. **Tool mentions** — new tools, APIs, libraries, or capabilities being discussed
+
+## Priority Tiers
+
+Assign a priority to each insight:
+- **p0**: Topic appears in 3+ sources AND/OR has high velocity (>50% increase) — "act now"
+- **p1**: Topic in 2 sources OR high confidence single-source — "watch closely"
+- **p2**: Emerging single-source signal — "monitor"
 
 ## Output Format
 
@@ -45,12 +99,13 @@ Return ONLY a JSON array. No markdown, no explanation. Each object:
     "insight_type": "trend" | "consensus" | "divergence" | "tool_mention",
     "topic": "short topic name",
     "summary": "2-3 sentence synthesis with evidence from signals",
-    "confidence": 0.0-1.0
+    "confidence": 0.0-1.0,
+    "priority": "p0" | "p1" | "p2"
   }
 ]
 \`\`\`
 
-Return 5-15 insights, ordered by confidence (highest first).`;
+Return 5-15 insights, ordered by priority (p0 first), then confidence.`;
 
   return prompt;
 }
@@ -73,6 +128,7 @@ function parseInsightsResponse(output: string): Insight[] {
     summary: String(item.summary ?? ''),
     sources: [], // Will be populated if we add source linking
     confidence: Number(item.confidence ?? 0),
+    priority: (item.priority as Insight['priority']) ?? 'p2',
   }));
 }
 
@@ -93,7 +149,20 @@ export async function runAnalysis(): Promise<{ insights: Insight[]; errors: stri
 
   console.log(`Analyzing ${signals.length} signals across ${new Set(signals.map((s) => s.source)).size} sources...`);
 
-  const prompt = buildPrompt(signals);
+  // Compute velocity scores for hot topic detection
+  let hotTopics = '';
+  try {
+    const velocityScores = await computeVelocity();
+    hotTopics = formatHotTopics(velocityScores);
+    const hotCount = velocityScores.filter((s) => s.is_hot).length;
+    if (hotCount > 0) {
+      console.log(`Detected ${hotCount} hot topics (velocity >50%).`);
+    }
+  } catch (err) {
+    errors.push(`Velocity computation failed (non-fatal): ${err instanceof Error ? err.message : String(err)}`);
+  }
+
+  const prompt = buildPrompt(signals, hotTopics);
 
   try {
     const insights = await runClaudeAnalysis(prompt);
@@ -174,10 +243,13 @@ Return ONLY a JSON array. Each object:
     "insight_type": "trend" | "consensus" | "divergence" | "tool_mention",
     "topic": "short topic name",
     "summary": "2-3 sentence synthesis",
-    "confidence": 0.0-1.0
+    "confidence": 0.0-1.0,
+    "priority": "p0" | "p1" | "p2"
   }
 ]
 \`\`\`
+
+Priority: p0 = multi-source + high velocity, p1 = 2 sources or high confidence, p2 = emerging single-source.
 
 Return 3-8 insights.`;
 
