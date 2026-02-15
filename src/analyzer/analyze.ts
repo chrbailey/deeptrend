@@ -1,9 +1,5 @@
-import { execFile } from 'node:child_process';
-import { promisify } from 'node:util';
 import type { RawSignal, Insight } from '../scrapers/types.js';
 import { getSignalsSince, getLastAnalysisTime, insertInsights } from '../db/supabase.js';
-
-const execFileAsync = promisify(execFile);
 
 const CLAUDE_CLI = process.env.CLAUDE_CLI || 'claude';
 
@@ -98,27 +94,6 @@ export async function runAnalysis(): Promise<{ insights: Insight[]; errors: stri
   console.log(`Analyzing ${signals.length} signals across ${new Set(signals.map((s) => s.source)).size} sources...`);
 
   const prompt = buildPrompt(signals);
-
-  try {
-    // Pipe prompt to claude -p (uses Max subscription)
-    const { stdout, stderr } = await execFileAsync(
-      CLAUDE_CLI,
-      ['-p', '--output-format', 'text', '--no-session-persistence', '--max-turns', '1'],
-      {
-        timeout: 120_000, // 2 minute timeout
-        maxBuffer: 10 * 1024 * 1024, // 10MB
-        env: { ...process.env },
-        encoding: 'utf-8',
-      },
-    );
-
-    // claude -p reads from stdin — we need to use spawn instead
-    // Actually, execFile doesn't support stdin easily. Let's use spawn.
-    void stdout;
-    void stderr;
-  } catch {
-    // Fall through to spawn approach
-  }
 
   try {
     const insights = await runClaudeAnalysis(prompt);
