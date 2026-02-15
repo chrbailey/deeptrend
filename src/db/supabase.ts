@@ -133,3 +133,19 @@ export async function searchInsights(query: string, limit = 10): Promise<Insight
   if (error) throw new Error(`Failed to search insights: ${error.message}`);
   return data ?? [];
 }
+
+export async function updateSignalVelocity(tag: string, velocity: number, since: Date): Promise<{ updated: number; error?: string }> {
+  const db = getClient();
+  const { data, error } = await db
+    .from('raw_signals')
+    .update({ velocity })
+    .contains('tags', [tag])
+    .gte('scraped_at', since.toISOString())
+    .select('id');
+
+  if (error) {
+    return { updated: 0, error: error.message };
+  }
+
+  return { updated: data?.length ?? 0 };
+}

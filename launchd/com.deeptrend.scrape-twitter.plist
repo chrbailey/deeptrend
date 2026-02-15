@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.deeptrend.scrape-twitter</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/npx</string>
+        <string>tsx</string>
+        <string>/Volumes/OWC drive/Dev/deeptrend/src/cli.ts</string>
+        <string>scrape</string>
+        <string>--source</string>
+        <string>twitter</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Volumes/OWC drive/Dev/deeptrend</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
+    </dict>
+    <key>StartInterval</key>
+    <integer>1800</integer>
+    <key>StandardOutPath</key>
+    <string>/tmp/deeptrend-scrape-twitter.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/deeptrend-scrape-twitter-error.log</string>
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

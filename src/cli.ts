@@ -1,8 +1,9 @@
 import 'dotenv/config';
 import { Command } from 'commander';
 import { scrapeGoogleTrends, scrapeReddit, scrapeArxiv, scrapeMoltbook, scrapeTwitter, loginToTwitter } from './scrapers/index.js';
-import { upsertSignals } from './db/supabase.js';
+import { upsertSignals, updateSignalVelocity } from './db/supabase.js';
 import { runAnalysis, runResearch } from './analyzer/analyze.js';
+import { computeVelocity } from './scoring/velocity.js';
 import type { ScraperResult } from './scrapers/types.js';
 
 const program = new Command();
@@ -66,6 +67,23 @@ program
 
     const elapsed = ((Date.now() - start) / 1000).toFixed(1);
     console.log(`\nDone in ${elapsed}s: ${totalSignals} scraped, ${totalInserted} stored, ${allErrors.length} errors`);
+
+    // Compute and persist velocity scores
+    console.log('\nComputing velocity scores...');
+    const velocityScores = await computeVelocity();
+    const scrapeStart = new Date(start);
+    let totalVelocityUpdates = 0;
+
+    for (const score of velocityScores) {
+      const { updated, error } = await updateSignalVelocity(score.topic, score.velocity, scrapeStart);
+      if (error) {
+        allErrors.push(`Velocity update for "${score.topic}": ${error}`);
+      } else {
+        totalVelocityUpdates += updated;
+      }
+    }
+
+    console.log(`Velocity updates: ${totalVelocityUpdates} signals updated across ${velocityScores.length} topics`);
 
     if (allErrors.length > 0) {
       process.exit(1);
