@@ -29,8 +29,8 @@ function parseTweetsFromGraphQL(body: unknown, searchQuery?: string): TweetData[
   try {
     const entries = extractTimelineEntries(body);
     for (const entry of entries) {
-      const tweet = extractTweetFromEntry(entry, searchQuery);
-      if (tweet) tweets.push(tweet);
+      const extracted = extractTweetsFromEntry(entry, searchQuery);
+      tweets.push(...extracted);
     }
   } catch {
     // GraphQL structure varies — silently skip unparseable responses
@@ -44,28 +44,59 @@ function extractTimelineEntries(body: unknown): unknown[] {
 
   const json = body as Record<string, unknown>;
 
-  // Navigate nested GraphQL response — handles both timeline and search results
-  // Typical path: data.{some_key}.timeline.instructions[].entries[]
+  // Navigate nested GraphQL response — handles multiple nesting patterns:
+  // Search: data.search_by_raw_query.search_timeline.timeline.instructions[].entries[]
+  // Trending: data.{key}.timeline.instructions[].entries[]
   const data = json.data as Record<string, unknown> | undefined;
   if (!data) return [];
 
-  for (const key of Object.keys(data)) {
-    const inner = data[key] as Record<string, unknown> | undefined;
-    const timeline = inner?.timeline as Record<string, unknown> | undefined;
-    const instructions = (timeline?.instructions ?? inner?.instructions) as unknown[] | undefined;
-    if (!instructions) continue;
-
-    for (const instruction of instructions) {
-      const inst = instruction as Record<string, unknown>;
-      const entries = inst.entries as unknown[] | undefined;
-      if (entries) return entries;
+  // Recursively find an 'instructions' array containing entries
+  function findInstructions(obj: unknown, depth: number): unknown[] | null {
+    if (depth > 5 || !obj || typeof obj !== 'object') return null;
+    const record = obj as Record<string, unknown>;
+    if (Array.isArray(record.instructions)) {
+      for (const inst of record.instructions as unknown[]) {
+        const i = inst as Record<string, unknown>;
+        if (Array.isArray(i.entries)) return i.entries as unknown[];
+      }
     }
+    for (const val of Object.values(record)) {
+      const result = findInstructions(val, depth + 1);
+      if (result) return result;
+    }
+    return null;
   }
 
-  return [];
+  return findInstructions(data, 0) ?? [];
 }
 
-function extractTweetFromEntry(entry: unknown, searchQuery?: string): TweetData | null {
+function extractTweetsFromEntry(entry: unknown, searchQuery?: string): TweetData[] {
+  const e = entry as Record<string, unknown>;
+  const content = e.content as Record<string, unknown> | undefined;
+  if (!content) return [];
+
+  // Handle TimelineTimelineModule (grouped entries with items array)
+  const items = content.items as unknown[] | undefined;
+  if (items) {
+    const tweets: TweetData[] = [];
+    for (const item of items) {
+      const itemObj = item as Record<string, unknown>;
+      const innerItem = itemObj.item as Record<string, unknown> | undefined;
+      const ic = innerItem?.itemContent as Record<string, unknown> | undefined;
+      if (ic?.tweet_results) {
+        const tweet = extractSingleTweet({ content: { itemContent: ic } }, searchQuery);
+        if (tweet) tweets.push(tweet);
+      }
+    }
+    return tweets;
+  }
+
+  // Handle regular TimelineTimelineItem
+  const tweet = extractSingleTweet(entry, searchQuery);
+  return tweet ? [tweet] : [];
+}
+
+function extractSingleTweet(entry: unknown, searchQuery?: string): TweetData | null {
   try {
     const e = entry as Record<string, unknown>;
     const content = e.content as Record<string, unknown> | undefined;
@@ -85,7 +116,9 @@ function extractTweetFromEntry(entry: unknown, searchQuery?: string): TweetData 
 
     const restId = (result.rest_id ?? legacy.id_str ?? '') as string;
     const text = (legacy.full_text ?? '') as string;
-    const author = (userLegacy?.screen_name ?? '') as string;
+    // screen_name can be in user's core or legacy depending on API version
+    const userCore = userResult?.core as Record<string, unknown> | undefined;
+    const author = (userCore?.screen_name ?? userLegacy?.screen_name ?? '') as string;
     const likes = (legacy.favorite_count ?? 0) as number;
     const retweets = (legacy.retweet_count ?? 0) as number;
     const createdAt = (legacy.created_at ?? '') as string;
@@ -161,7 +194,8 @@ export async function scrapeTwitter(options?: TwitterScraperOptions): Promise<Sc
     const responseHandler = async (response: Response) => {
       const url = response.url();
       if (!url.includes('/i/api/graphql/')) return;
-      if (!url.includes('SearchTimeline') && !url.includes('ExploreTrends') && !url.includes('Trending')) return;
+
+      if (!url.includes('SearchTimeline') && !url.includes('ExploreTrends') && !url.includes('Trending') && !url.includes('GenericTimelineById') && !url.includes('SearchByRawQuery')) return;
 
       try {
         const body = await response.json();
@@ -175,6 +209,7 @@ export async function scrapeTwitter(options?: TwitterScraperOptions): Promise<Sc
             searchQuery = parsed.rawQuery;
           } catch { /* ignore parse errors */ }
         }
+
         const tweets = parseTweetsFromGraphQL(body, searchQuery);
         allTweets.push(...tweets);
       } catch {
