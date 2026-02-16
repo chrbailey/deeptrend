@@ -1,7 +1,7 @@
 import { XMLParser } from 'fast-xml-parser';
 import type { RawSignal, ScraperResult } from './types.js';
 
-const RSS_URL = 'https://trends.google.com/trends/trendingsearches/daily/rss?geo=US';
+const RSS_URL = 'https://trends.google.com/trending/rss?geo=US';
 
 interface TrendItem {
   title: string;
