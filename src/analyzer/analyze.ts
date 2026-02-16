@@ -1,8 +1,50 @@
 import type { RawSignal, Insight } from '../scrapers/types.js';
 import { getSignalsSince, getLastAnalysisTime, insertInsights } from '../db/supabase.js';
 import { computeVelocity, formatHotTopics } from '../scoring/velocity.js';
+import { getLLMKnowledge } from './llm-knowledge.js';
+import { CURATED_FEEDS, type TrustTier } from '../scrapers/curated-feeds.js';
 
 const CLAUDE_CLI = process.env.CLAUDE_CLI || 'claude';
+
+// Trust tiers for all sources — curated feeds get their tier from config, V2 sources have fixed tiers
+const SOURCE_TRUST: Record<string, TrustTier | 'raw'> = {
+  'google-trends': 'raw',
+  'reddit': 'raw',
+  'arxiv': 'raw',
+  'moltbook': 'raw',
+  'twitter': 'raw',
+};
+
+// Build trust map from curated feed configs
+for (const feed of CURATED_FEEDS) {
+  SOURCE_TRUST[feed.source] = feed.trust;
+}
+
+// Source display names
+const SOURCE_NAMES: Record<string, string> = {
+  'google-trends': 'Google Trends',
+  'reddit': 'Reddit',
+  'arxiv': 'arXiv',
+  'moltbook': 'Moltbook',
+  'twitter': 'X/Twitter',
+};
+
+for (const feed of CURATED_FEEDS) {
+  SOURCE_NAMES[feed.source] = feed.name;
+}
+
+// Source angle descriptions
+const SOURCE_ANGLES: Record<string, string> = {
+  'google-trends': 'search interest trends',
+  'reddit': 'developer/researcher community discussion',
+  'arxiv': 'academic preprints',
+  'moltbook': 'AI agent discussions',
+  'twitter': 'real-time social media',
+};
+
+for (const feed of CURATED_FEEDS) {
+  SOURCE_ANGLES[feed.source] = feed.angle;
+}
 
 interface TagAggregate {
   tag: string;
@@ -32,7 +74,7 @@ function aggregateByTag(signals: RawSignal[], topN = 5): TagAggregate[] {
     .slice(0, topN);
 }
 
-export function buildPrompt(signals: RawSignal[], hotTopics = ''): string {
+export function buildPrompt(signals: RawSignal[], hotTopics = '', llmKnowledge = ''): string {
   const grouped: Record<string, RawSignal[]> = {};
   for (const s of signals) {
     if (!grouped[s.source]) grouped[s.source] = [];
@@ -40,15 +82,58 @@ export function buildPrompt(signals: RawSignal[], hotTopics = ''): string {
   }
 
   const sourceCount = Object.keys(grouped).length;
+  const hasCuratedSources = Object.keys(grouped).some((s) => SOURCE_TRUST[s] && SOURCE_TRUST[s] !== 'raw');
 
-  let prompt = `You are a trend intelligence analyst. Analyze these aggregated signals from ${sourceCount} sources and produce prioritized insights.
+  let prompt: string;
 
-## Signals by Source (compressed)
+  if (hasCuratedSources) {
+    // V3 LLM Counsel prompt
+    prompt = `## Analysis Framework: LLM Counsel
+
+You are synthesizing a panel of ${sourceCount} independent curators and sources.
+Each has different expertise and biases. Your job:
+
+1. FIND CONVERGENCE — same topic flagged by curators with different biases
+2. WEIGHT BY TRUST — editor > crowd > expert > algorithm > primary > raw
+3. NOTE BIAS — when only one curator flags something, note their angle
+4. DETECT GAPS — what should be trending but isn't in any feed?
+
+CONVERGENCE → PRIORITY:
+- 3+ curators with DIFFERENT trust tiers → p0 (act now)
+- 2 curators agree → p1 (watch closely)
+- Single curator → p2 (monitor)
+- Cross-bias agreement (e.g., safety researcher + startup community) → boost priority
+
+## Panel
 
 `;
+    // Group sources by trust tier
+    const byTier: Record<string, string[]> = {};
+    for (const source of Object.keys(grouped)) {
+      const tier = String(SOURCE_TRUST[source] ?? 'raw');
+      if (!byTier[tier]) byTier[tier] = [];
+      const name = SOURCE_NAMES[source] ?? source;
+      const angle = SOURCE_ANGLES[source] ?? '';
+      byTier[tier].push(`${name} [${tier}]: ${angle}`);
+    }
+
+    for (const [tier, sources] of Object.entries(byTier)) {
+      prompt += `### ${tier}\n`;
+      for (const s of sources) {
+        prompt += `- ${s}\n`;
+      }
+      prompt += '\n';
+    }
+  } else {
+    // V2 legacy prompt
+    prompt = `You are a trend intelligence analyst. Analyze these aggregated signals from ${sourceCount} sources and produce prioritized insights.
+
+`;
+  }
+
+  prompt += `## Signals by Source (compressed)\n\n`;
 
   for (const [source, items] of Object.entries(grouped)) {
-    // Group items by their primary tag (first tag) for sub-grouping
     const subGroups: Record<string, RawSignal[]> = {};
     for (const item of items) {
       const key = item.tags[0] ?? 'general';
@@ -57,7 +142,9 @@ export function buildPrompt(signals: RawSignal[], hotTopics = ''): string {
     }
 
     const subGroupCount = Object.keys(subGroups).length;
-    prompt += `### ${source} (${items.length} signals across ${subGroupCount} groups)\n`;
+    const trust = SOURCE_TRUST[source] ?? 'raw';
+    const name = SOURCE_NAMES[source] ?? source;
+    prompt += `### ${name} [${trust}] (${items.length} signals across ${subGroupCount} groups)\n`;
 
     for (const [group, groupItems] of Object.entries(subGroups)) {
       const topTags = aggregateByTag(groupItems, 3);
@@ -70,6 +157,16 @@ export function buildPrompt(signals: RawSignal[], hotTopics = ''): string {
     prompt += '\n';
   }
 
+  if (llmKnowledge) {
+    prompt += `## LLM Knowledge (from Claude's training data)
+
+Note: This may be outdated. Cross-reference with live feed signals above.
+
+${llmKnowledge}
+
+`;
+  }
+
   if (hotTopics) {
     prompt += hotTopics;
     prompt += '\n';
@@ -78,15 +175,16 @@ export function buildPrompt(signals: RawSignal[], hotTopics = ''): string {
   prompt += `## Analysis Instructions
 
 Identify:
-1. **Emerging trends** — topics appearing across multiple sources
-2. **Agent consensus** — what Moltbook agents are converging on
-3. **Agent-vs-human divergence** — where agent discussions (Moltbook) differ from human discussions (Reddit, arXiv, Twitter)
+1. **Emerging trends** — topics appearing across multiple sources with convergence
+2. **Consensus signals** — where curators with different biases agree
+3. **Divergence** — where different trust tiers disagree
 4. **Tool mentions** — new tools, APIs, libraries, or capabilities being discussed
+5. **Gaps** — important developments missing from the feeds
 
 ## Priority Tiers
 
 Assign a priority to each insight:
-- **p0**: Topic appears in 3+ sources AND/OR has high velocity (>50% increase) — "act now"
+- **p0**: Topic appears in 3+ sources with DIFFERENT trust tiers AND/OR has high velocity (>50% increase) — "act now"
 - **p1**: Topic in 2 sources OR high confidence single-source — "watch closely"
 - **p2**: Emerging single-source signal — "monitor"
 
@@ -96,11 +194,13 @@ Return ONLY a JSON array. No markdown, no explanation. Each object:
 \`\`\`json
 [
   {
-    "insight_type": "trend" | "consensus" | "divergence" | "tool_mention",
+    "insight_type": "trend" | "consensus" | "divergence" | "tool_mention" | "gap",
     "topic": "short topic name",
     "summary": "2-3 sentence synthesis with evidence from signals",
     "confidence": 0.0-1.0,
-    "priority": "p0" | "p1" | "p2"
+    "priority": "p0" | "p1" | "p2",
+    "sources": ["source-name-1", "source-name-2"],
+    "convergence_tiers": ["editor", "crowd", "expert"]
   }
 ]
 \`\`\`
@@ -126,9 +226,10 @@ function parseInsightsResponse(output: string): Insight[] {
     insight_type: item.insight_type as Insight['insight_type'],
     topic: String(item.topic ?? ''),
     summary: String(item.summary ?? ''),
-    sources: [], // Will be populated if we add source linking
+    sources: Array.isArray(item.sources) ? item.sources.map(String) : [],
     confidence: Number(item.confidence ?? 0),
     priority: (item.priority as Insight['priority']) ?? 'p2',
+    convergence_tiers: Array.isArray(item.convergence_tiers) ? item.convergence_tiers.map(String) : undefined,
   }));
 }
 
@@ -162,7 +263,19 @@ export async function runAnalysis(): Promise<{ insights: Insight[]; errors: stri
     errors.push(`Velocity computation failed (non-fatal): ${err instanceof Error ? err.message : String(err)}`);
   }
 
-  const prompt = buildPrompt(signals, hotTopics);
+  // Get LLM knowledge as additional panelist
+  let llmKnowledge = '';
+  try {
+    console.log('Querying Claude for LLM knowledge panel...');
+    llmKnowledge = await getLLMKnowledge();
+    if (llmKnowledge && !llmKnowledge.includes('unavailable')) {
+      console.log('LLM knowledge panel contributed.');
+    }
+  } catch (err) {
+    errors.push(`LLM knowledge failed (non-fatal): ${err instanceof Error ? err.message : String(err)}`);
+  }
+
+  const prompt = buildPrompt(signals, hotTopics, llmKnowledge);
 
   try {
     const insights = await runClaudeAnalysis(prompt);

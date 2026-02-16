@@ -1,7 +1,7 @@
 {
   "name": "deeptrend",
-  "version": "0.2.0",
-  "description": "Trend intelligence pipeline — scrapes Google Trends, Reddit, arXiv, Moltbook, and X/Twitter, analyzes via claude -p with velocity scoring",
+  "version": "0.3.0",
+  "description": "AI trend intelligence — curated from 14+ sources, synthesized via LLM Counsel, published for agent consumption",
   "type": "module",
   "scripts": {
     "start": "tsx src/cli.ts",
@@ -21,6 +21,7 @@
     "commander": "^14.0.3",
     "dotenv": "^17.3.1",
     "fast-xml-parser": "^5.3.6",
+    "feed": "^5.2.0",
     "playwright": "^1.58.2"
   },
   "devDependencies": {

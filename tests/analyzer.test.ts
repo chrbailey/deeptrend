@@ -94,9 +94,9 @@ describe('Compressed prompt building', () => {
 
     const prompt = buildPrompt(signals);
 
-    expect(prompt).toContain('reddit (2 signals');
-    expect(prompt).toContain('arxiv (1 signals');
-    expect(prompt).toContain('twitter (1 signals');
+    expect(prompt).toContain('Reddit [raw] (2 signals');
+    expect(prompt).toContain('arXiv [raw] (1 signals');
+    expect(prompt).toContain('X/Twitter [raw] (1 signals');
   });
 
   it('includes priority tier instructions in prompt', () => {
@@ -160,5 +160,110 @@ describe('Compressed prompt building', () => {
 
     const prompt = buildPrompt(signals);
     expect(prompt).toContain('5 sources');
+  });
+});
+
+describe('LLM Counsel prompt (V3)', () => {
+  const makeSignal = (overrides: Partial<RawSignal>): RawSignal => ({
+    source: 'reddit',
+    source_id: 'test-1',
+    title: 'Test',
+    content: 'Test content',
+    url: 'https://example.com',
+    author: 'tester',
+    author_type: 'human',
+    score: 10,
+    tags: ['MachineLearning'],
+    published_at: new Date().toISOString(),
+    ...overrides,
+  });
+
+  it('activates LLM Counsel format when curated sources are present', () => {
+    const signals: RawSignal[] = [
+      makeSignal({ source: 'techmeme', tags: ['tech'] }),
+      makeSignal({ source: 'reddit', tags: ['ML'] }),
+    ];
+
+    const prompt = buildPrompt(signals);
+
+    expect(prompt).toContain('LLM Counsel');
+    expect(prompt).toContain('FIND CONVERGENCE');
+    expect(prompt).toContain('WEIGHT BY TRUST');
+    expect(prompt).toContain('Panel');
+  });
+
+  it('uses legacy format when only raw sources present', () => {
+    const signals: RawSignal[] = [
+      makeSignal({ source: 'reddit' }),
+      makeSignal({ source: 'arxiv' }),
+    ];
+
+    const prompt = buildPrompt(signals);
+
+    expect(prompt).not.toContain('LLM Counsel');
+    expect(prompt).toContain('trend intelligence analyst');
+  });
+
+  it('shows trust tiers in panel section', () => {
+    const signals: RawSignal[] = [
+      makeSignal({ source: 'techmeme', tags: ['tech'] }),
+      makeSignal({ source: 'hn-digest', tags: ['dev'] }),
+      makeSignal({ source: 'simon-willison', tags: ['llm'] }),
+    ];
+
+    const prompt = buildPrompt(signals);
+
+    expect(prompt).toContain('editor');
+    expect(prompt).toContain('crowd');
+    expect(prompt).toContain('expert');
+    expect(prompt).toContain('TechMeme');
+    expect(prompt).toContain('Simon Willison');
+  });
+
+  it('includes trust tier label on signal groups', () => {
+    const signals: RawSignal[] = [
+      makeSignal({ source: 'techmeme', tags: ['tech'] }),
+    ];
+
+    const prompt = buildPrompt(signals);
+
+    expect(prompt).toContain('TechMeme [editor]');
+  });
+
+  it('includes LLM knowledge when provided', () => {
+    const signals: RawSignal[] = [makeSignal({})];
+    const llmKnowledge = '1. Claude 4.5 was released in January 2026.\n2. MCP protocol gaining traction.';
+
+    const prompt = buildPrompt(signals, '', llmKnowledge);
+
+    expect(prompt).toContain('LLM Knowledge');
+    expect(prompt).toContain('Claude 4.5 was released');
+    expect(prompt).toContain('may be outdated');
+  });
+
+  it('omits LLM knowledge section when empty', () => {
+    const signals: RawSignal[] = [makeSignal({})];
+
+    const prompt = buildPrompt(signals, '', '');
+
+    expect(prompt).not.toContain('LLM Knowledge');
+  });
+
+  it('includes convergence_tiers in output format', () => {
+    const signals: RawSignal[] = [makeSignal({})];
+
+    const prompt = buildPrompt(signals);
+
+    expect(prompt).toContain('"convergence_tiers"');
+    expect(prompt).toContain('"sources"');
+  });
+
+  it('includes gap detection in analysis instructions', () => {
+    const signals: RawSignal[] = [makeSignal({})];
+
+    const prompt = buildPrompt(signals);
+
+    expect(prompt).toContain('Gaps');
+    expect(prompt).toContain('"gap"');
   });
 });

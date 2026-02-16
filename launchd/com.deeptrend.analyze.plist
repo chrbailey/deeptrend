@@ -6,10 +6,9 @@
     <string>com.deeptrend.analyze</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/usr/local/bin/npx</string>
-        <string>tsx</string>
-        <string>/Volumes/OWC drive/Dev/deeptrend/src/cli.ts</string>
-        <string>analyze</string>
+        <string>/bin/bash</string>
+        <string>-c</string>
+        <string>cd "/Volumes/OWC drive/Dev/deeptrend" &amp;&amp; /usr/local/bin/npx tsx src/cli.ts analyze &amp;&amp; /usr/local/bin/npx tsx src/cli.ts publish</string>
     </array>
     <key>WorkingDirectory</key>
     <string>/Volumes/OWC drive/Dev/deeptrend</string>
