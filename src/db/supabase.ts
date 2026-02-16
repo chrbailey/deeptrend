@@ -31,15 +31,14 @@ export async function upsertSignals(signals: RawSignal[]): Promise<{ inserted: n
   // Upsert in chunks of 100
   for (let i = 0; i < rows.length; i += 100) {
     const chunk = rows.slice(i, i + 100);
-    const { data, error } = await db
+    const { error, count } = await db
       .from('raw_signals')
-      .upsert(chunk, { onConflict: 'source,source_id', ignoreDuplicates: true })
-      .select('id');
+      .upsert(chunk, { onConflict: 'source,source_id', ignoreDuplicates: true, count: 'exact' });
 
     if (error) {
       errors.push(`Upsert chunk ${i}: ${error.message}`);
     } else {
-      inserted += data?.length ?? 0;
+      inserted += count ?? chunk.length;
     }
   }
 
