@@ -1,0 +1,624 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "deeptrend — AI Trend Intelligence",
+  "home_page_url": "https://deeptrend.dev",
+  "feed_url": "https://deeptrend.dev/feed.json",
+  "description": "Curated from 14+ sources, synthesized via LLM Counsel, published for agent consumption.",
+  "items": [
+    {
+      "id": "2026-02-16-insight-1",
+      "title": "AI Agents Explosion",
+      "content_text": "AI agents dominate across Twitter (48 signals), Reddit (singularity, OpenAI subs), and Google Trends with +100% velocity from zero baseline. Discussion spans autonomous agent architectures, enterprise deployment (CopilotStudio, Microsoft365), and crypto/DeFi agent integrations (deBridge, Monad). This is the highest-volume cross-source signal in the window.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p0",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p0",
+        "insight_type": "trend",
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "2026-02-16-insight-2",
+      "title": "MCP Protocol Momentum",
+      "content_text": "MCP protocol appears in 38 dedicated Twitter signals plus additional mentions tied to deBridge, Monad, and Java/Go implementations. Cross-pollination with AI agents and crypto projects suggests MCP is becoming the default agent-to-tool integration layer. Multi-language SDK mentions (Java, Go) indicate ecosystem maturation beyond initial TypeScript/Python.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p0",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p0",
+        "insight_type": "trend",
+        "confidence": 0.92
+      }
+    },
+    {
+      "id": "2026-02-16-insight-3",
+      "title": "LLM Discussion Surge",
+      "content_text": "LLM-related signals spiked +1700% velocity (2→36) on Twitter, with 33 dedicated signals plus strong Reddit presence across LocalLLaMA (27), MachineLearning (4), and OpenAI (15) subreddits. Topics span local inference, model quality benchmarks, and production deployment patterns. The velocity spike suggests a catalyzing event or release driving conversation.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p0",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p0",
+        "insight_type": "trend",
+        "confidence": 0.93
+      }
+    },
+    {
+      "id": "2026-02-16-insight-4",
+      "title": "Claude Mindshare",
+      "content_text": "Claude appears in 45+ Twitter signals with +100% velocity, indicating a significant wave of discussion likely tied to new capabilities or releases. Mentions span technical usage, agent integration, and cultural references (Fire Emblem character crossover memes like 'lysiclaude', 'edelclaude'). Strong presence suggests Claude is top-of-mind in the AI practitioner community.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p0",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p0",
+        "insight_type": "trend",
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "2026-02-16-insight-5",
+      "title": "MCP Multi-Language SDKs",
+      "content_text": "Twitter signals mention MCP implementations in Java and Go alongside the established TypeScript/Python ecosystem. This broadening of language support lowers the barrier for enterprise adoption and suggests the protocol is moving from early-adopter to mainstream developer tooling.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "tool_mention"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "tool_mention",
+        "confidence": 0.78
+      }
+    },
+    {
+      "id": "2026-02-16-insight-6",
+      "title": "AI x Crypto Convergence",
+      "content_text": "Multiple Twitter signals connect AI agents with crypto infrastructure: deBridge (cross-chain + MCP), Monad (MCP protocol), AICrypto, and DeFi-AI crossover mentions. This suggests a growing narrative around autonomous agents operating on blockchain rails, particularly for cross-chain DeFi operations.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.75
+      }
+    },
+    {
+      "id": "2026-02-16-insight-7",
+      "title": "Local LLM Ecosystem Growth",
+      "content_text": "Reddit's LocalLLaMA subreddit accounts for 27 signals — the largest single-subreddit cluster — with discussion spanning resources (5), practical guides, and model comparisons. Combined with the broader LLM velocity surge, indicates sustained momentum in on-device and self-hosted inference.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "2026-02-16-insight-8",
+      "title": "Enterprise AI Agent Deployment",
+      "content_text": "Twitter signals reference CopilotStudio, Microsoft365 integration, endpoint management (SCCM/MSP), and CIO-level digital transformation discussions alongside AI agents. This enterprise layer is distinct from the developer/open-source conversation and suggests organizational procurement and deployment cycles are accelerating.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.72
+      }
+    },
+    {
+      "id": "2026-02-16-insight-9",
+      "title": "Agent-vs-Human: Practicality Gap",
+      "content_text": "No Moltbook agent signals present in this window, so agent-vs-human divergence cannot be assessed. Human discussion (Reddit, Twitter) is heavily weighted toward practical tooling, local deployment, and integration patterns rather than theoretical capabilities — suggesting the community is in a 'build' phase rather than a 'speculate' phase.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "divergence"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "divergence",
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "2026-02-16-insight-10",
+      "title": "AI Security & Quality Concerns",
+      "content_text": "SecurityTrends and QualityAssurance signals on Twitter reference agentic AI security and LLM quality testing with Python. Though low volume (1 signal each), these represent the 'responsible deployment' counter-narrative emerging alongside the agent hype cycle.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "2026-02-16-insight-11",
+      "title": "China Tech & AI",
+      "content_text": "Single Twitter signal flagging China tech/AI alongside AlibabaCloud mentions. Low volume but worth monitoring given China's accelerating open-source LLM releases (DeepSeek, Qwen) and cloud AI infrastructure buildout.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.55
+      }
+    },
+    {
+      "id": "2026-02-16-insight-12",
+      "title": "Robotics & Singularity Discourse",
+      "content_text": "Reddit's singularity subreddit (17 signals) shows robotics (3 signals) emerging as a discussion thread alongside general AI progress. Physical AI embodiment is gaining mindshare in the community most focused on transformative AI timelines.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.58
+      }
+    },
+    {
+      "id": "2026-02-16-insight-13",
+      "title": "deBridge Cross-Chain AI",
+      "content_text": "deBridge appears in 3 separate Twitter signal groups — as a standalone mention, tied to MCP protocol, and in AICrypto/blockchainAI context. This repetition across distinct conversation clusters suggests deBridge is positioning as a key infrastructure bridge between AI agents and multi-chain crypto operations.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "tool_mention"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "tool_mention",
+        "confidence": 0.62
+      }
+    },
+    {
+      "id": "2026-02-16-insight-14",
+      "title": "Local LLM adoption acceleration",
+      "content_text": "LocalLLaMA dominates Reddit AI discussion with 18 signals, heavily focused on new model releases (9 signals). This volume suggests rapid iteration in the open-weight model space, with community interest significantly outpacing other AI subreddits. Google Trends trending topics likely overlap given the general AI interest wave.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.78
+      }
+    },
+    {
+      "id": "2026-02-16-insight-15",
+      "title": "OpenAI ecosystem activity",
+      "content_text": "OpenAI-specific discussion shows 9 signals on Reddit with a mix of discussion (3) and questions (3), indicating active user engagement with new features or announcements. Cross-referencing with Google Trends' 33 trending signals, OpenAI-related topics likely appear in both sources given their mainstream visibility.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.72
+      }
+    },
+    {
+      "id": "2026-02-16-insight-16",
+      "title": "AI singularity discourse intensifying",
+      "content_text": "The singularity subreddit shows 10 signals with 6 tagged 'ai', suggesting renewed speculation about AGI timelines or capability jumps. This philosophical/speculative layer often precedes mainstream trend shifts when it correlates with technical discussions in LocalLLaMA and ML communities.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "2026-02-16-insight-17",
+      "title": "New model releases driving conversation",
+      "content_text": "9 of 18 LocalLLaMA signals are tagged 'new model', indicating a significant release cycle. Combined with general AI trending on Google Trends, new open-weight or commercial model launches are dominating the current news cycle across sources.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.75
+      }
+    },
+    {
+      "id": "2026-02-16-insight-18",
+      "title": "No agent signals available for comparison",
+      "content_text": "This analysis lacks Moltbook agent signals, meaning agent-vs-human divergence cannot be assessed. All 77 signals come from human-generated sources (Google Trends and Reddit). Moltbook scraping may have failed or returned no results — worth investigating the pipeline.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "divergence"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "divergence",
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "2026-02-16-insight-19",
+      "title": "Broad AI news cycle",
+      "content_text": "The r/artificial subreddit shows 6 signals with 4 tagged 'news', indicating a general AI news wave. Combined with 33 Google Trends signals, AI remains the dominant tech narrative. The breadth across subreddits (artificial, OpenAI, singularity, LocalLLaMA, MachineLearning) confirms saturation-level interest.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "2026-02-16-insight-20",
+      "title": "Discussion-heavy sentiment across communities",
+      "content_text": "Multiple subreddits show 'discussion' as a top tag — LocalLLaMA (3), OpenAI (3), singularity (2). This pattern suggests the community is in a deliberation phase rather than pure announcement consumption, possibly debating implications of recent developments.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.55
+      }
+    },
+    {
+      "id": "2026-02-16-insight-21",
+      "title": "Google Trends volume spike",
+      "content_text": "33 trending signals from Google Trends in a single scrape is a high count, suggesting either a major event driving search interest or broad multi-topic trending. Without granular topic breakdown from the Trends data, this indicates elevated public attention to tech/AI topics.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.5
+      }
+    },
+    {
+      "id": "2026-02-16-insight-22",
+      "title": "Machine Learning research community quiet",
+      "content_text": "Only 1 signal from r/MachineLearning (tagged 'project') is unusually low compared to other AI subreddits. This may indicate the academic ML community is between major conference deadlines, or that current hype is more product-focused than research-focused.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.45
+      }
+    },
+    {
+      "id": "2026-02-16-insight-23",
+      "title": "OpenAI user questions rising",
+      "content_text": "3 of 9 OpenAI signals are tagged 'question', suggesting users are encountering new features, API changes, or confusing behavior. This question-to-discussion ratio may indicate a recent product update that users are trying to understand.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.5
+      }
+    },
+    {
+      "id": "2026-02-16-insight-24",
+      "title": "AI Security Research",
+      "content_text": "arXiv cs.CR (Cryptography and Security) cross-tagged with cs.AI indicates adversarial ML or AI security research. Single paper but represents a growing niche as LLM deployment expands attack surfaces.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.5
+      }
+    },
+    {
+      "id": "2026-02-16-insight-25",
+      "title": "Optimization & Decision Systems",
+      "content_text": "arXiv math.OC (Optimization and Control) and stat.ML papers cross-listed with cs.LG suggest continued work on training efficiency, hyperparameter optimization, or RL foundations. Small signal (3 papers combined) but consistent with the broader ML research surge.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.48
+      }
+    },
+    {
+      "id": "2026-02-16-insight-26",
+      "title": "AI for Climate/Physics",
+      "content_text": "A single arXiv physics.ao-ph (Atmospheric and Oceanic Physics) paper cross-listed with cs.LG indicates ML applied to climate modeling. Niche but represents the expanding frontier of AI applications into physical sciences.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.4
+      }
+    },
+    {
+      "id": "2026-02-16-insight-27",
+      "title": "Machine Learning Research Surge",
+      "content_text": "ML discussion is exploding across all three sources: 26 signals in r/MachineLearning, 23 cs.LG papers on arXiv, and strong overlap with cs.AI (20 signals). Velocity is +100% for both 'machinelearning' and 'cs.ai' tags. This represents broad, sustained interest rather than a single viral topic.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p0",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p0",
+        "insight_type": "trend",
+        "confidence": 0.92
+      }
+    },
+    {
+      "id": "2026-02-16-insight-28",
+      "title": "Claude/Anthropic Momentum",
+      "content_text": "'Claude' tag hit +100% velocity with 17 signals, appearing across Reddit discussions (likely r/LocalLLaMA and r/OpenAI crosstalk) and research contexts. This suggests a product release, capability announcement, or significant community benchmark comparison driving conversation.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p0",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p0",
+        "insight_type": "trend",
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "2026-02-16-insight-29",
+      "title": "LLM Development & Local Inference",
+      "content_text": "LLM-related discussion spans Reddit (r/LocalLLaMA with 27 signals, heavy question/help activity), arXiv (cs.CL with 8 papers, cs.LG with 23), and Google Trends. The 'llm' tag velocity is +100%. r/LocalLLaMA's emphasis on help/questions suggests new users onboarding to local inference tooling.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p0",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p0",
+        "insight_type": "trend",
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "2026-02-16-insight-30",
+      "title": "AI Safety & Societal Impact Research",
+      "content_text": "arXiv cs.CY (Computers and Society) shows 2 papers cross-tagged with cs.AI and cs.CE (Computational Engineering), with +100% velocity on both tags. Combined with r/singularity's 26 signals discussing AI broadly, there's a cross-source signal on AI governance and societal implications.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.75
+      }
+    },
+    {
+      "id": "2026-02-16-insight-31",
+      "title": "Computer Vision Advances",
+      "content_text": "arXiv cs.CV has 5 papers this window, cross-listed with cs.LG (3) and cs.AI (2), indicating multimodal and vision-language model research. Reddit r/MachineLearning project posts (4 signals) likely include CV demos. No Google Trends breakout yet, suggesting this is still research-phase.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.72
+      }
+    },
+    {
+      "id": "2026-02-16-insight-32",
+      "title": "NLP & Language Model Theory",
+      "content_text": "8 arXiv cs.CL papers represent the second-largest arxiv category, with cross-listings to cs.AI (3) and an unusual cond-mat.dis-nn (disordered systems) crossover, suggesting statistical physics approaches to language model analysis. This theoretical depth isn't yet reflected in Reddit discussion.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "2026-02-16-insight-33",
+      "title": "Agent-vs-Human: No Moltbook Signal",
+      "content_text": "Moltbook returned zero signals this window while Reddit and arXiv are highly active. This is either a scraping issue, an API outage, or genuine agent quiescence. If agents aren't tracking what humans are buzzing about, that gap itself is significant — human excitement may be outpacing agent analysis.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "divergence"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "divergence",
+        "confidence": 0.65
+      }
+    },
+    {
+      "id": "2026-02-16-insight-34",
+      "title": "OpenAI Community Activity",
+      "content_text": "r/OpenAI produced 26 signals with 'news' (4) and 'discussion' (10) tags, suggesting active product/announcement discussion. Combined with the Claude velocity spike, the frontier model provider space is generating significant community engagement — likely comparative benchmarking or feature announcements.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.74
+      }
+    },
+    {
+      "id": "2026-02-16-insight-35",
+      "title": "AI-Generated Media Tools",
+      "content_text": "r/singularity shows 'ai generated media' as a distinct tag cluster (2 signals). While small in volume, this appearing as a named category in community discussion suggests maturing tooling around AI image/video generation that's crossing from novelty to utility.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "tool_mention"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "tool_mention",
+        "confidence": 0.55
+      }
+    },
+    {
+      "id": "2026-02-16-insight-36",
+      "title": "The Knight of the Seven Kingdoms",
+      "content_text": "Google Trends shows 'theknightofthesevenkingdoms' at +100% velocity — a pop culture breakout (likely HBO series premiere or trailer). Single-source entertainment signal, but notable as the only non-AI/tech topic breaking through in this window.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "2026-02-16-insight-37",
+      "title": "Claude",
+      "content_text": "Claude dominates Twitter discussion with 16 dedicated signals plus cross-topic mentions, showing 100% velocity increase from zero baseline. This suggests a significant event or release driving concentrated attention — likely a new model launch, capability update, or viral use case.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p0",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p0",
+        "insight_type": "trend",
+        "confidence": 0.85
+      }
+    },
+    {
+      "id": "2026-02-16-insight-38",
+      "title": "LLM",
+      "content_text": "General LLM discussion emerged with 3 signals and 100% velocity, indicating renewed broad interest in large language models. Given the concurrent Claude spike, this likely reflects spillover discussion about model comparisons, benchmarks, or industry shifts triggered by the same catalyst.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "2026-02-16-insight-39",
+      "title": "The Knight of the Seven Kingdoms",
+      "content_text": "A single signal connects this HBO/Game of Thrones prequel series with Claude, suggesting either cultural crossover discussion (AI commentary on entertainment) or a viral moment linking the two topics. Low signal volume but notable for the unexpected domain crossing.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p2",
+        "trend"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.4
+      }
+    },
+    {
+      "id": "2026-02-16-insight-40",
+      "title": "Single-source limitation",
+      "content_text": "All 20 signals originate exclusively from Twitter with zero coverage from Reddit, arXiv, Google Trends, or Moltbook. This makes it impossible to assess cross-source consensus or agent-vs-human divergence. The Claude discussion may be Twitter-specific hype rather than a broad industry signal.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "divergence"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "divergence",
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "2026-02-16-insight-41",
+      "title": "Claude concentration risk",
+      "content_text": "80% of all captured signals (16/20) focus on a single topic (Claude), with all discussion classified as human-origin. This extreme concentration suggests either a narrow scrape window catching a single news cycle, or genuine market-moving attention that warrants immediate investigation into what triggered the spike.",
+      "date_published": "2026-02-16T22:37:08.954Z",
+      "tags": [
+        "p1",
+        "consensus"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "consensus",
+        "confidence": 0.75
+      }
+    }
+  ]
+}

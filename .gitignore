@@ -6,4 +6,3 @@ dist/
 *.js.map
 !vitest.config.ts
 .chrome-profile/
-public/

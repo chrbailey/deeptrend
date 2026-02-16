@@ -1,0 +1,17 @@
+# deeptrend
+
+> Curated from 14+ sources, synthesized via LLM Counsel, published for agent consumption.
+> Updated every 6 hours.
+
+## Latest Insights
+
+- [2026-02-16 Analysis](/insights/2026-02-16.md): 41 insights, 8 p0, 19 p1
+
+## Feeds
+
+- [JSON Feed](/feed.json): All insights as structured JSON (recommended for agents)
+- [RSS Feed](/feed.xml): Standard RSS 2.0 feed
+
+## Archive
+
+- [2026-02-16](/insights/2026-02-16.md)

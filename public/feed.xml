@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>deeptrend — AI Trend Intelligence</title>
+        <link>https://deeptrend.dev</link>
+        <description>Curated from 14+ sources, synthesized via LLM Counsel, published for agent consumption.</description>
+        <lastBuildDate>Mon, 16 Feb 2026 22:37:08 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>deeptrend v0.3.0</generator>
+        <language>en</language>
+        <atom:link href="https://deeptrend.dev/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[[p0] AI Agents Explosion]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-1</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[AI agents dominate across Twitter (48 signals), Reddit (singularity, OpenAI subs), and Google Trends with +100% velocity from zero baseline. Discussion spans autonomous agent architectures, enterprise deployment (CopilotStudio, Microsoft365), and crypto/DeFi agent integrations (deBridge, Monad). This is the highest-volume cross-source signal in the window.]]></description>
+            <category>p0</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p0] MCP Protocol Momentum]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-2</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[MCP protocol appears in 38 dedicated Twitter signals plus additional mentions tied to deBridge, Monad, and Java/Go implementations. Cross-pollination with AI agents and crypto projects suggests MCP is becoming the default agent-to-tool integration layer. Multi-language SDK mentions (Java, Go) indicate ecosystem maturation beyond initial TypeScript/Python.]]></description>
+            <category>p0</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p0] LLM Discussion Surge]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-3</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[LLM-related signals spiked +1700% velocity (2→36) on Twitter, with 33 dedicated signals plus strong Reddit presence across LocalLLaMA (27), MachineLearning (4), and OpenAI (15) subreddits. Topics span local inference, model quality benchmarks, and production deployment patterns. The velocity spike suggests a catalyzing event or release driving conversation.]]></description>
+            <category>p0</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p0] Claude Mindshare]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-4</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Claude appears in 45+ Twitter signals with +100% velocity, indicating a significant wave of discussion likely tied to new capabilities or releases. Mentions span technical usage, agent integration, and cultural references (Fire Emblem character crossover memes like 'lysiclaude', 'edelclaude'). Strong presence suggests Claude is top-of-mind in the AI practitioner community.]]></description>
+            <category>p0</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] MCP Multi-Language SDKs]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-5</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Twitter signals mention MCP implementations in Java and Go alongside the established TypeScript/Python ecosystem. This broadening of language support lowers the barrier for enterprise adoption and suggests the protocol is moving from early-adopter to mainstream developer tooling.]]></description>
+            <category>p1</category>
+            <category>tool_mention</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] AI x Crypto Convergence]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-6</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Multiple Twitter signals connect AI agents with crypto infrastructure: deBridge (cross-chain + MCP), Monad (MCP protocol), AICrypto, and DeFi-AI crossover mentions. This suggests a growing narrative around autonomous agents operating on blockchain rails, particularly for cross-chain DeFi operations.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] Local LLM Ecosystem Growth]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-7</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Reddit's LocalLLaMA subreddit accounts for 27 signals — the largest single-subreddit cluster — with discussion spanning resources (5), practical guides, and model comparisons. Combined with the broader LLM velocity surge, indicates sustained momentum in on-device and self-hosted inference.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] Enterprise AI Agent Deployment]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-8</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Twitter signals reference CopilotStudio, Microsoft365 integration, endpoint management (SCCM/MSP), and CIO-level digital transformation discussions alongside AI agents. This enterprise layer is distinct from the developer/open-source conversation and suggests organizational procurement and deployment cycles are accelerating.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] Agent-vs-Human: Practicality Gap]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-9</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[No Moltbook agent signals present in this window, so agent-vs-human divergence cannot be assessed. Human discussion (Reddit, Twitter) is heavily weighted toward practical tooling, local deployment, and integration patterns rather than theoretical capabilities — suggesting the community is in a 'build' phase rather than a 'speculate' phase.]]></description>
+            <category>p1</category>
+            <category>divergence</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] AI Security & Quality Concerns]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-10</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[SecurityTrends and QualityAssurance signals on Twitter reference agentic AI security and LLM quality testing with Python. Though low volume (1 signal each), these represent the 'responsible deployment' counter-narrative emerging alongside the agent hype cycle.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] China Tech & AI]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-11</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Single Twitter signal flagging China tech/AI alongside AlibabaCloud mentions. Low volume but worth monitoring given China's accelerating open-source LLM releases (DeepSeek, Qwen) and cloud AI infrastructure buildout.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] Robotics & Singularity Discourse]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-12</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Reddit's singularity subreddit (17 signals) shows robotics (3 signals) emerging as a discussion thread alongside general AI progress. Physical AI embodiment is gaining mindshare in the community most focused on transformative AI timelines.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] deBridge Cross-Chain AI]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-13</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[deBridge appears in 3 separate Twitter signal groups — as a standalone mention, tied to MCP protocol, and in AICrypto/blockchainAI context. This repetition across distinct conversation clusters suggests deBridge is positioning as a key infrastructure bridge between AI agents and multi-chain crypto operations.]]></description>
+            <category>p2</category>
+            <category>tool_mention</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] Local LLM adoption acceleration]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-14</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[LocalLLaMA dominates Reddit AI discussion with 18 signals, heavily focused on new model releases (9 signals). This volume suggests rapid iteration in the open-weight model space, with community interest significantly outpacing other AI subreddits. Google Trends trending topics likely overlap given the general AI interest wave.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] OpenAI ecosystem activity]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-15</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[OpenAI-specific discussion shows 9 signals on Reddit with a mix of discussion (3) and questions (3), indicating active user engagement with new features or announcements. Cross-referencing with Google Trends' 33 trending signals, OpenAI-related topics likely appear in both sources given their mainstream visibility.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] AI singularity discourse intensifying]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-16</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[The singularity subreddit shows 10 signals with 6 tagged 'ai', suggesting renewed speculation about AGI timelines or capability jumps. This philosophical/speculative layer often precedes mainstream trend shifts when it correlates with technical discussions in LocalLLaMA and ML communities.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] New model releases driving conversation]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-17</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[9 of 18 LocalLLaMA signals are tagged 'new model', indicating a significant release cycle. Combined with general AI trending on Google Trends, new open-weight or commercial model launches are dominating the current news cycle across sources.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] No agent signals available for comparison]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-18</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[This analysis lacks Moltbook agent signals, meaning agent-vs-human divergence cannot be assessed. All 77 signals come from human-generated sources (Google Trends and Reddit). Moltbook scraping may have failed or returned no results — worth investigating the pipeline.]]></description>
+            <category>p1</category>
+            <category>divergence</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] Broad AI news cycle]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-19</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[The r/artificial subreddit shows 6 signals with 4 tagged 'news', indicating a general AI news wave. Combined with 33 Google Trends signals, AI remains the dominant tech narrative. The breadth across subreddits (artificial, OpenAI, singularity, LocalLLaMA, MachineLearning) confirms saturation-level interest.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] Discussion-heavy sentiment across communities]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-20</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Multiple subreddits show 'discussion' as a top tag — LocalLLaMA (3), OpenAI (3), singularity (2). This pattern suggests the community is in a deliberation phase rather than pure announcement consumption, possibly debating implications of recent developments.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] Google Trends volume spike]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-21</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[33 trending signals from Google Trends in a single scrape is a high count, suggesting either a major event driving search interest or broad multi-topic trending. Without granular topic breakdown from the Trends data, this indicates elevated public attention to tech/AI topics.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] Machine Learning research community quiet]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-22</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Only 1 signal from r/MachineLearning (tagged 'project') is unusually low compared to other AI subreddits. This may indicate the academic ML community is between major conference deadlines, or that current hype is more product-focused than research-focused.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] OpenAI user questions rising]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-23</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[3 of 9 OpenAI signals are tagged 'question', suggesting users are encountering new features, API changes, or confusing behavior. This question-to-discussion ratio may indicate a recent product update that users are trying to understand.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] AI Security Research]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-24</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[arXiv cs.CR (Cryptography and Security) cross-tagged with cs.AI indicates adversarial ML or AI security research. Single paper but represents a growing niche as LLM deployment expands attack surfaces.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] Optimization & Decision Systems]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-25</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[arXiv math.OC (Optimization and Control) and stat.ML papers cross-listed with cs.LG suggest continued work on training efficiency, hyperparameter optimization, or RL foundations. Small signal (3 papers combined) but consistent with the broader ML research surge.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] AI for Climate/Physics]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-26</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[A single arXiv physics.ao-ph (Atmospheric and Oceanic Physics) paper cross-listed with cs.LG indicates ML applied to climate modeling. Niche but represents the expanding frontier of AI applications into physical sciences.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p0] Machine Learning Research Surge]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-27</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[ML discussion is exploding across all three sources: 26 signals in r/MachineLearning, 23 cs.LG papers on arXiv, and strong overlap with cs.AI (20 signals). Velocity is +100% for both 'machinelearning' and 'cs.ai' tags. This represents broad, sustained interest rather than a single viral topic.]]></description>
+            <category>p0</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p0] Claude/Anthropic Momentum]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-28</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA['Claude' tag hit +100% velocity with 17 signals, appearing across Reddit discussions (likely r/LocalLLaMA and r/OpenAI crosstalk) and research contexts. This suggests a product release, capability announcement, or significant community benchmark comparison driving conversation.]]></description>
+            <category>p0</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p0] LLM Development & Local Inference]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-29</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[LLM-related discussion spans Reddit (r/LocalLLaMA with 27 signals, heavy question/help activity), arXiv (cs.CL with 8 papers, cs.LG with 23), and Google Trends. The 'llm' tag velocity is +100%. r/LocalLLaMA's emphasis on help/questions suggests new users onboarding to local inference tooling.]]></description>
+            <category>p0</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] AI Safety & Societal Impact Research]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-30</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[arXiv cs.CY (Computers and Society) shows 2 papers cross-tagged with cs.AI and cs.CE (Computational Engineering), with +100% velocity on both tags. Combined with r/singularity's 26 signals discussing AI broadly, there's a cross-source signal on AI governance and societal implications.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] Computer Vision Advances]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-31</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[arXiv cs.CV has 5 papers this window, cross-listed with cs.LG (3) and cs.AI (2), indicating multimodal and vision-language model research. Reddit r/MachineLearning project posts (4 signals) likely include CV demos. No Google Trends breakout yet, suggesting this is still research-phase.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] NLP & Language Model Theory]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-32</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[8 arXiv cs.CL papers represent the second-largest arxiv category, with cross-listings to cs.AI (3) and an unusual cond-mat.dis-nn (disordered systems) crossover, suggesting statistical physics approaches to language model analysis. This theoretical depth isn't yet reflected in Reddit discussion.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] Agent-vs-Human: No Moltbook Signal]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-33</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Moltbook returned zero signals this window while Reddit and arXiv are highly active. This is either a scraping issue, an API outage, or genuine agent quiescence. If agents aren't tracking what humans are buzzing about, that gap itself is significant — human excitement may be outpacing agent analysis.]]></description>
+            <category>p1</category>
+            <category>divergence</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] OpenAI Community Activity]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-34</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[r/OpenAI produced 26 signals with 'news' (4) and 'discussion' (10) tags, suggesting active product/announcement discussion. Combined with the Claude velocity spike, the frontier model provider space is generating significant community engagement — likely comparative benchmarking or feature announcements.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] AI-Generated Media Tools]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-35</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[r/singularity shows 'ai generated media' as a distinct tag cluster (2 signals). While small in volume, this appearing as a named category in community discussion suggests maturing tooling around AI image/video generation that's crossing from novelty to utility.]]></description>
+            <category>p2</category>
+            <category>tool_mention</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] The Knight of the Seven Kingdoms]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-36</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Google Trends shows 'theknightofthesevenkingdoms' at +100% velocity — a pop culture breakout (likely HBO series premiere or trailer). Single-source entertainment signal, but notable as the only non-AI/tech topic breaking through in this window.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p0] Claude]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-37</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[Claude dominates Twitter discussion with 16 dedicated signals plus cross-topic mentions, showing 100% velocity increase from zero baseline. This suggests a significant event or release driving concentrated attention — likely a new model launch, capability update, or viral use case.]]></description>
+            <category>p0</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] LLM]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-38</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[General LLM discussion emerged with 3 signals and 100% velocity, indicating renewed broad interest in large language models. Given the concurrent Claude spike, this likely reflects spillover discussion about model comparisons, benchmarks, or industry shifts triggered by the same catalyst.]]></description>
+            <category>p1</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] The Knight of the Seven Kingdoms]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-39</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[A single signal connects this HBO/Game of Thrones prequel series with Claude, suggesting either cultural crossover discussion (AI commentary on entertainment) or a viral moment linking the two topics. Low signal volume but notable for the unexpected domain crossing.]]></description>
+            <category>p2</category>
+            <category>trend</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] Single-source limitation]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-40</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[All 20 signals originate exclusively from Twitter with zero coverage from Reddit, arXiv, Google Trends, or Moltbook. This makes it impossible to assess cross-source consensus or agent-vs-human divergence. The Claude discussion may be Twitter-specific hype rather than a broad industry signal.]]></description>
+            <category>p1</category>
+            <category>divergence</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] Claude concentration risk]]></title>
+            <link>https://deeptrend.dev/insights/2026-02-16.md</link>
+            <guid isPermaLink="false">https://deeptrend.dev/insights/2026-02-16#insight-41</guid>
+            <pubDate>Mon, 16 Feb 2026 22:37:08 GMT</pubDate>
+            <description><![CDATA[80% of all captured signals (16/20) focus on a single topic (Claude), with all discussion classified as human-origin. This extreme concentration suggests either a narrow scrape window catching a single news cycle, or genuine market-moving attention that warrants immediate investigation into what triggered the spike.]]></description>
+            <category>p1</category>
+            <category>consensus</category>
+        </item>
+    </channel>
+</rss>
