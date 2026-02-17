@@ -6,7 +6,7 @@ import { CURATED_FEEDS, type TrustTier } from '../scrapers/curated-feeds.js';
 
 const SITE_TITLE = 'deeptrend — AI Trend Intelligence';
 const SITE_DESCRIPTION = 'Curated from 14+ sources, synthesized via LLM Counsel, published for agent consumption.';
-const SITE_URL = 'https://deeptrend.dev'; // placeholder — configurable later
+const SITE_URL = 'https://chrbailey.github.io/deeptrend';
 
 // Trust map for convergence metadata
 const SOURCE_TRUST: Record<string, TrustTier | 'raw'> = {
@@ -72,8 +72,14 @@ export function generateLlmsTxt(insights: Insight[], date: Date): string {
 
 ## Feeds
 
-- [JSON Feed](/feed.json): All insights as structured JSON (recommended for agents)
+- [Hot Topics](/hot.json): Current p0/p1 only, minimal payload (recommended for agents)
+- [JSON Feed](/feed.json): All insights as structured JSON
 - [RSS Feed](/feed.xml): Standard RSS 2.0 feed
+- [Schema](/schema/feed.schema.json): JSON Schema for feed.json
+
+## Source
+
+- [GitHub](https://github.com/chrbailey/deeptrend)
 
 ## Archive
 
@@ -200,6 +206,32 @@ convergence_topics: ${JSON.stringify(convergenceTopics)}
   return md;
 }
 
+export function generateHotJson(insights: Insight[], date: Date): string {
+  const p0 = insights.filter((i) => i.priority === 'p0');
+  const p1 = insights.filter((i) => i.priority === 'p1');
+
+  const hot = {
+    updated: date.toISOString(),
+    source: SITE_URL,
+    feed: `${SITE_URL}/feed.json`,
+    p0: p0.map((i) => ({
+      topic: i.topic,
+      type: i.insight_type,
+      confidence: i.confidence,
+      summary: i.summary,
+      sources: i.sources ?? [],
+    })),
+    p1: p1.map((i) => ({
+      topic: i.topic,
+      type: i.insight_type,
+      confidence: i.confidence,
+      sources: i.sources ?? [],
+    })),
+  };
+
+  return JSON.stringify(hot, null, 2);
+}
+
 export async function publishSite(
   insights: Insight[],
   outputDir: string,
@@ -229,6 +261,11 @@ export async function publishSite(
     const rssPath = join(outputDir, 'feed.xml');
     await writeFile(rssPath, rssFeed, 'utf-8');
     files.push(rssPath);
+
+    const hotJson = generateHotJson(insights, now);
+    const hotPath = join(outputDir, 'hot.json');
+    await writeFile(hotPath, hotJson, 'utf-8');
+    files.push(hotPath);
 
     const markdown = generateInsightMarkdown(insights, now);
     const mdPath = join(outputDir, 'insights', `${dateStr}.md`);

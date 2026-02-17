@@ -1,409 +1,127 @@
-# DeepTrend
-
+---
+name: deeptrend
 type: agent-data-source
-format: structured feeds
-update_frequency: ~6 hours
-primary_interface: /public/feed.json
-discovery_file: /public/llms.txt
-schema_version: 1
-
+domain: ai-trends
+formats: json-feed, rss, llms-txt
+update_frequency: 6h
+primary_endpoint: https://chrbailey.github.io/deeptrend/feed.json
+discovery: https://chrbailey.github.io/deeptrend/llms.txt
+hot_topics: https://chrbailey.github.io/deeptrend/hot.json
+schema: /schema/feed.schema.json
+repo: https://github.com/chrbailey/deeptrend
 ---
 
-## Overview
+# deeptrend
 
-deeptrend is a continuously running trend-intelligence pipeline that:
+Structured AI trend feed for autonomous agents, monitoring systems, and research pipelines that need early signal detection in AI and infrastructure trends.
 
-1. Collects raw signals from multiple independent sources
-2. Measures topic velocity and cross-source convergence
-3. Synthesizes insights using an external language model
-4. Publishes structured outputs for automated consumption
+Curated from 14+ sources. Synthesized via LLM Counsel. Published every 6 hours.
 
-Outputs are designed for ingestion by agents, pipelines, and monitoring systems.
+## Quick Start
 
-Human readability is secondary.
+```bash
+# Get current hot topics (smallest payload)
+curl -s https://chrbailey.github.io/deeptrend/hot.json | jq .
 
----
-
-## Canonical Interfaces
-
-Agents should use these endpoints in order of preference.
-
-### 1. JSON Feed (Primary)
-
-`/public/feed.json`
-
-Recommended ingestion format.
-
-Contains:
-
-* topic
-* summary
-* priority
-* insight_type
-* confidence
-* convergence metadata
-* tags
-* timestamps
-
-Stable structure is maintained across releases.
-
----
-
-### 2. Discovery File
-
-`/public/llms.txt`
-
-Provides:
-
-* latest analysis reference
-* feed locations
-* archive links
-
-Entry point for automated discovery.
-
----
-
-### 3. RSS Feed (Compatibility)
-
-`/public/feed.xml`
-
-Provided for compatibility with systems that require RSS 2.0.
-
----
-
-### 4. Archive
-
-`/public/insights/YYYY-MM-DD.md`
-
-Human-readable daily archive.
-Not recommended for automated ingestion.
-
----
-
-## Data Model
-
-### Signals
-
-A signal is a single observation collected from a source.
-
-Examples:
-
-* trending search
-* research paper
-* forum discussion
-* repository activity
-* announcement
-
-Signals are stored in:
-
-`raw_signals`
-
-Deduplication key:
-
-```
-(source, source_id)
+# Get full structured feed
+curl -s https://chrbailey.github.io/deeptrend/feed.json | jq '.items[:3]'
 ```
 
-Signals represent raw observations only.
-No synthesis or interpretation occurs at this stage.
+```python
+import requests
+feed = requests.get("https://chrbailey.github.io/deeptrend/feed.json").json()
+for item in feed["items"]:
+    dt = item["_deeptrend"]
+    print(f"[{dt['priority']}] {item['title']} (confidence: {dt['confidence']})")
+```
 
----
+```javascript
+const feed = await fetch("https://chrbailey.github.io/deeptrend/feed.json").then(r => r.json());
+const p0 = feed.items.filter(i => i._deeptrend.priority === "p0");
+```
 
-### Insights
+## Endpoints
 
-Insights are synthesized conclusions derived from multiple signals.
+| Endpoint | Format | Use case |
+|----------|--------|----------|
+| [`/hot.json`](https://chrbailey.github.io/deeptrend/hot.json) | JSON | Current state only, minimal payload |
+| [`/feed.json`](https://chrbailey.github.io/deeptrend/feed.json) | JSON Feed 1.1 | Full structured feed (recommended) |
+| [`/feed.xml`](https://chrbailey.github.io/deeptrend/feed.xml) | RSS 2.0 | Legacy compatibility |
+| [`/llms.txt`](https://chrbailey.github.io/deeptrend/llms.txt) | Markdown | Agent discovery file |
+| [`/insights/YYYY-MM-DD.md`](https://chrbailey.github.io/deeptrend/insights/2026-02-17.md) | Markdown | Daily archive |
 
-Stored in:
+Schema: [`/schema/feed.schema.json`](schema/feed.schema.json)
 
-`insights`
+## Feed Item Structure
 
-Each insight contains:
+Each item in `feed.json` includes a `_deeptrend` extension:
 
-* topic
-* summary
-* insight_type
-* priority
-* confidence
-* sources
-* analyzed_at
-
-Embeddings may be stored for semantic search.
-
----
+```json
+{
+  "id": "2026-02-17-insight-1",
+  "title": "Safety/alignment research absent during OpenAI signal surge",
+  "content_text": "...",
+  "date_published": "2026-02-17T06:00:00Z",
+  "tags": ["p0", "divergence", "reddit", "techmeme"],
+  "_deeptrend": {
+    "priority": "p0",
+    "insight_type": "trend | consensus | divergence | tool_mention | gap",
+    "confidence": 0.75,
+    "convergence": {
+      "source_count": 3,
+      "sources": ["reddit", "google-trends", "techmeme"]
+    }
+  }
+}
+```
 
 ## Priority Model
 
-Priority reflects cross-source convergence strength.
+| Priority | Meaning | Typical count |
+|----------|---------|---------------|
+| p0 | Non-obvious signal: absence, reversal, or cross-domain surprise | 1-3 per run |
+| p1 | Specific trend with 2+ sources or notable expert signal | 3-6 per run |
+| p2 | Early signal worth monitoring | 2-4 per run |
 
-| Priority | Meaning                                        |
-| -------- | ---------------------------------------------- |
-| p0       | Strong convergence across multiple trust tiers |
-| p1       | Significant signals with partial convergence   |
-| p2       | Early or weak signals                          |
+Volume alone never makes something p0. "AI agents are trending" is noise. "Safety discourse disappeared during a capabilities surge" is signal.
 
-Priority is derived from:
+## Sources (14+)
 
-* velocity
-* number of sources
-* trust tier diversity
-* synthesis confidence
+| Tier | Sources | What it catches |
+|------|---------|-----------------|
+| Editor | TechMeme | What editors think matters |
+| Crowd | HN Digest, HuggingFace Papers | What developers/researchers upvote |
+| Expert | Simon Willison, Import AI, AlphaSignal, Last Week in AI, Ahead of AI, MarkTechPost | Practitioner analysis |
+| Algorithm | GitHub Trending | What's being built |
+| Primary | OpenAI News, Google Research, BAIR | First-party announcements |
+| Raw | Reddit, arXiv, Google Trends | Unfiltered community signal |
 
----
-
-## Velocity Model
-
-Velocity measures change in signal frequency between time windows.
-
-For each topic:
-
-velocity = (current_count − previous_count) / previous_count
-
-Topics exceeding growth thresholds may be marked as hot and influence synthesis prompts.
-
-Velocity is computed deterministically before analysis.
-
----
-
-## Trust Tiers
-
-Signals may be categorized by reliability tier.
-
-Typical tiers include:
-
-* editorial
-* expert
-* primary
-* algorithmic
-* crowd
-* raw
-
-Cross-tier agreement increases confidence.
-
----
-
-## Pipeline Architecture
+## Pipeline
 
 ```
-Scrapers
-   ↓
-raw_signals (Supabase)
-   ↓
-Velocity Scoring
-   ↓
-LLM Synthesis
-   ↓
-insights (Supabase)
-   ↓
-Publisher
-   ↓
-Agent Feeds
+Curated RSS Feeds (14) + API Scrapers
+            |
+     raw_signals (Supabase)
+            |
+     Velocity Scoring
+            |
+     LLM Counsel Synthesis (anti-noise, absence/reversal detection)
+            |
+        insights
+            |
+     Publisher -> feed.json, feed.xml, hot.json, llms.txt, archives
+            |
+     GitHub Pages (auto-deploy on push)
 ```
-
-Each stage is isolated and deterministic where possible.
-
-LLM usage is restricted to synthesis tasks.
-
----
-
-## Data Flow
-
-### Scrape Phase
-
-Collect signals from:
-
-* curated RSS feeds
-* APIs
-* optional browser sources
-
-Write:
-raw_signals
-
----
-
-### Analyze Phase
-
-Reads:
-
-* recent signals
-* previous insights
-* velocity signals
-
-Produces:
-
-* structured insights
-* priority classification
-
-Write:
-insights
-
----
-
-### Publish Phase
-
-Reads:
-insights
-
-Produces:
-
-* llms.txt
-* feed.json
-* feed.xml
-* archives
-
----
-
-## Command Line Interface
-
-Primary commands:
-
-Scrape:
-
-```
-deeptrend scrape
-```
-
-Curated feeds only:
-
-```
-deeptrend scrape --curated-only
-```
-
-Analyze:
-
-```
-deeptrend analyze
-```
-
-Publish:
-
-```
-deeptrend publish
-```
-
-Research a topic:
-
-```
-deeptrend research "topic"
-```
-
-Status:
-
-```
-deeptrend status
-```
-
----
-
-## Scheduling Model
-
-Typical automation:
-
-Scrape:
-every 15 minutes
-
-Analyze:
-4 times per day
-
-Publish:
-after analysis
-
-Scheduling is external (cron, launchd, or equivalent).
-
----
-
-## Database
-
-Backend:
-Postgres (Supabase)
-
-Tables:
-
-* raw_signals
-* insights
-
-Embeddings are stored only for insights.
-
----
-
-## Environment Variables
-
-Required:
-
-```
-SUPABASE_URL
-SUPABASE_ANON_KEY
-```
-
-Optional:
-
-```
-CLAUDE_CLI
-MOLTBOOK_API_KEY
-CHROME_PROFILE_DIR
-```
-
----
-
-## Stability Guarantees
-
-The following interfaces are considered stable:
-
-* feed.json schema
-* llms.txt presence
-* priority taxonomy (p0, p1, p2)
-* insight_type categories
-
-Internal implementation may change without notice.
-
-Breaking schema changes will be versioned.
-
----
-
-## Intended Consumers
-
-Designed for:
-
-* autonomous agents
-* monitoring pipelines
-* research systems
-* market intelligence tooling
-* automated dashboards
-
-Not optimized for:
-
-* interactive UI
-* narrative reporting
-* manual browsing
-
----
 
 ## Design Principles
 
-* Signals over opinions
-* Measurement before synthesis
-* Convergence over volume
-* Machine-readable first
-* Deterministic stages where possible
-
----
-
-## Versioning
-
-Feed schemas may evolve.
-
-Backward compatibility is preferred.
-
-Schema changes will be indicated in:
-
-* version fields
-* commit history
-
----
+- Absence and reversal signals are more valuable than volume
+- Cross-bias convergence on non-obvious topics is the gold standard
+- Every insight must pass: "would a senior AI researcher say 'I didn't know that'?"
+- Machine-readable first, human-readable second
+- Deterministic stages where possible, LLM only for synthesis
 
 ## License
 
-See repository license.
-
----
-
-If you want, I can also produce a **“minimal ultra-machine README”** variant (about 40 lines, extremely terse) that some indexing agents actually parse faster than full READMEs.
+MIT

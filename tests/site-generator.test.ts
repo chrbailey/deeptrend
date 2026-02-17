@@ -221,7 +221,7 @@ describe('publishSite (filesystem)', () => {
       const result = await publishSite(testInsights, tmpDir, testDate);
 
       expect(result.errors).toHaveLength(0);
-      expect(result.files).toHaveLength(4);
+      expect(result.files).toHaveLength(5);
 
       // Verify files exist and have content
       const llmsTxt = await readFile(join(tmpDir, 'llms.txt'), 'utf-8');
@@ -263,7 +263,7 @@ describe('publishSite (filesystem)', () => {
       const result = await publishSite([], tmpDir, testDate);
 
       expect(result.errors).toHaveLength(0);
-      expect(result.files).toHaveLength(4);
+      expect(result.files).toHaveLength(5);
 
       const jsonFeed = await readFile(join(tmpDir, 'feed.json'), 'utf-8');
       const parsed = JSON.parse(jsonFeed);

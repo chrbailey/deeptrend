@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "deeptrend Feed",
+  "description": "JSON Feed 1.1 with _deeptrend extensions for AI trend intelligence",
+  "type": "object",
+  "required": ["version", "title", "items"],
+  "properties": {
+    "version": {
+      "const": "https://jsonfeed.org/version/1.1"
+    },
+    "title": {
+      "type": "string"
+    },
+    "home_page_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "feed_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "description": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FeedItem"
+      }
+    }
+  },
+  "$defs": {
+    "FeedItem": {
+      "type": "object",
+      "required": ["id", "title", "content_text", "date_published", "tags", "_deeptrend"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier: YYYY-MM-DD-insight-N"
+        },
+        "title": {
+          "type": "string",
+          "description": "Short topic name"
+        },
+        "content_text": {
+          "type": "string",
+          "description": "2-3 sentence synthesis with evidence and 'so what'"
+        },
+        "date_published": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Includes priority (p0/p1/p2), insight_type, and source names"
+        },
+        "_deeptrend": {
+          "$ref": "#/$defs/DeeptrendExtension"
+        }
+      }
+    },
+    "DeeptrendExtension": {
+      "type": "object",
+      "required": ["priority", "insight_type", "confidence"],
+      "properties": {
+        "priority": {
+          "enum": ["p0", "p1", "p2"],
+          "description": "p0: act now (absence/reversal/surprise), p1: investigate, p2: monitor"
+        },
+        "insight_type": {
+          "enum": ["trend", "consensus", "divergence", "tool_mention", "gap"],
+          "description": "Classification of the insight"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Synthesis confidence score"
+        },
+        "convergence": {
+          "type": "object",
+          "properties": {
+            "source_count": {
+              "type": "integer",
+              "description": "Number of independent sources contributing"
+            },
+            "sources": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Source identifiers that contributed to this insight"
+            }
+          }
+        }
+      }
+    }
+  }
+}

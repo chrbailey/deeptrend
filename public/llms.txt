@@ -9,8 +9,14 @@
 
 ## Feeds
 
-- [JSON Feed](/feed.json): All insights as structured JSON (recommended for agents)
+- [Hot Topics](/hot.json): Current p0/p1 only, minimal payload (recommended for agents)
+- [JSON Feed](/feed.json): All insights as structured JSON
 - [RSS Feed](/feed.xml): Standard RSS 2.0 feed
+- [Schema](/schema/feed.schema.json): JSON Schema for feed.json
+
+## Source
+
+- [GitHub](https://github.com/chrbailey/deeptrend)
 
 ## Archive
 

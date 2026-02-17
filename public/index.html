@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>deeptrend — AI Trend Intelligence</title>
+<meta name="description" content="Structured AI trend feed for autonomous agents — curated from 14+ sources, synthesized via LLM Counsel, published every 6h">
+<link rel="alternate" type="application/feed+json" href="feed.json" title="deeptrend JSON Feed">
+<link rel="alternate" type="application/rss+xml" href="feed.xml" title="deeptrend RSS Feed">
 <style>
   body { font-family: system-ui, sans-serif; max-width: 640px; margin: 4rem auto; padding: 0 1rem; color: #1a1a1a; line-height: 1.6; }
   h1 { font-size: 1.5rem; }
@@ -16,16 +19,20 @@
 </head>
 <body>
 <h1>deeptrend</h1>
-<p>AI trend intelligence — curated from 14+ sources, synthesized via LLM Counsel, published for agent consumption. Updated every 6 hours.</p>
+<p>Structured AI trend feed for autonomous agents, monitoring systems, and research pipelines. Curated from 14+ sources. Synthesized via LLM Counsel. Updated every 6 hours.</p>
 
 <h2>Feeds</h2>
 <ul class="feeds">
-  <li><a href="llms.txt"><code>llms.txt</code></a> — Agent discovery file <span class="badge">recommended</span></li>
-  <li><a href="feed.json"><code>feed.json</code></a> — JSON Feed 1.1 (structured, machine-readable)</li>
+  <li><a href="hot.json"><code>hot.json</code></a> — Current p0/p1 topics, minimal payload <span class="badge">agents</span></li>
+  <li><a href="feed.json"><code>feed.json</code></a> — JSON Feed 1.1 (full structured feed)</li>
   <li><a href="feed.xml"><code>feed.xml</code></a> — RSS 2.0</li>
+  <li><a href="llms.txt"><code>llms.txt</code></a> — Agent discovery file</li>
 </ul>
 
+<h2>Quick Start</h2>
+<pre><code>curl -s https://chrbailey.github.io/deeptrend/hot.json | jq .</code></pre>
+
 <h2>Source</h2>
-<p><a href="https://github.com/chrbailey/deeptrend">github.com/chrbailey/deeptrend</a></p>
+<p><a href="https://github.com/chrbailey/deeptrend">github.com/chrbailey/deeptrend</a> — <a href="https://github.com/chrbailey/deeptrend/blob/main/schema/feed.schema.json">schema</a></p>
 </body>
 </html>
