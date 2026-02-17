@@ -193,14 +193,28 @@ program
     console.log('Publishing site...');
     const start = Date.now();
 
-    // Get latest insights from Supabase
+    // Get insights from the LATEST analysis run only (same analyzed_at timestamp)
     const { getClient } = await import('./db/supabase.js');
     const db = getClient();
+
+    // First get the latest analysis timestamp
+    const { data: latest } = await db
+      .from('insights')
+      .select('analyzed_at')
+      .order('analyzed_at', { ascending: false })
+      .limit(1);
+
+    const latestTimestamp = latest?.[0]?.analyzed_at;
+    if (!latestTimestamp) {
+      console.log('No insights to publish. Run `deeptrend analyze` first.');
+      return;
+    }
+
     const { data: insights, error } = await db
       .from('insights')
       .select('*')
-      .order('analyzed_at', { ascending: false })
-      .limit(50);
+      .eq('analyzed_at', latestTimestamp)
+      .order('confidence', { ascending: false });
 
     if (error) {
       console.error(`Failed to fetch insights: ${error.message}`);

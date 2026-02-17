@@ -87,26 +87,68 @@ export function buildPrompt(signals: RawSignal[], hotTopics = '', llmKnowledge =
   let prompt: string;
 
   if (hasCuratedSources) {
-    // V3 LLM Counsel prompt
+    // V3 LLM Counsel prompt — editorial quality over volume
     prompt = `## Analysis Framework: LLM Counsel
 
-You are synthesizing a panel of ${sourceCount} independent curators and sources.
-Each has different expertise and biases. Your job:
+You are the editorial director of an intelligence brief for senior AI researchers.
+Your readers are deeply embedded in the field — they already follow Twitter, read arXiv daily,
+and know every major model release before it's announced. DO NOT tell them what they already know.
 
-1. FIND CONVERGENCE — same topic flagged by curators with different biases
-2. WEIGHT BY TRUST — editor > crowd > expert > algorithm > primary > raw
-3. NOTE BIAS — when only one curator flags something, note their angle
-4. DETECT GAPS — what should be trending but isn't in any feed?
+Your panel has ${sourceCount} independent curators/sources with different biases.
 
-CONVERGENCE → PRIORITY:
-- 3+ curators with DIFFERENT trust tiers → p0 (act now)
-- 2 curators agree → p1 (watch closely)
-- Single curator → p2 (monitor)
-- Cross-bias agreement (e.g., safety researcher + startup community) → boost priority
+## THE ANTI-NOISE FILTER (apply to EVERY insight before including it)
+
+Ask: "Would a senior AI researcher already know this from their normal information diet?"
+If YES → kill it. Do not include it regardless of signal volume or velocity.
+
+Examples of NOISE (never produce these):
+- "AI agents are trending" — everyone knows this
+- "LLM discussion is surging" — of course it is
+- "OpenAI published a lot of content" — that's just their blog
+- "Claude is being discussed" — we know, we work on it
+- "Machine learning research is active" — it's always active
+- Any insight that could be summarized as "[well-known topic] is [growing/trending/surging]"
+
+## WHAT IS VALUABLE (prioritize these)
+
+1. **ABSENCE**: What SHOULD be in the feeds but ISN'T?
+   - Narratives that died (e.g., "emergent capabilities" was hot in 2023, now gone — why?)
+   - Expected topics missing (safety research absent during a capabilities surge = significant)
+   - Sources that went quiet (an expert who normally posts weekly hasn't posted — why?)
+
+2. **REVERSALS**: What changed direction?
+   - Sentiment shifts (topic went from positive to skeptical or vice versa)
+   - Community migration (topic moved from one community to another)
+   - Narrative pivots (same topic, different framing than last cycle)
+
+3. **CROSS-DOMAIN SURPRISES**: Unexpected source combinations
+   - Physics papers appearing in ML venues (e.g., cond-mat.dis-nn × cs.CL)
+   - Crypto infrastructure in AI agent discussions
+   - Academic papers trending in developer communities (or vice versa)
+   - Topics where editor-tier and crowd-tier DISAGREE
+
+4. **SPECIFIC over GENERAL**: Name the paper, tool, company, or person
+   - BAD: "new model releases driving conversation"
+   - GOOD: "Manus autonomous agent got TechMeme editor coverage — first agent-product to cross from developer tool to mainstream business narrative"
+
+## PRIORITY RULES
+
+- **p0**: Absence/reversal signals OR cross-domain surprise with 3+ sources — "this changes what I should pay attention to"
+- **p1**: Specific non-obvious trend with 2+ sources OR notable single-source expert signal — "I should investigate this"
+- **p2**: Early signals worth monitoring — "interesting if confirmed"
+
+IMPORTANT: Volume alone NEVER makes something p0. A topic with 500 signals that everyone already knows about is p2 at best.
+Cross-bias convergence on a NON-OBVIOUS topic is the gold standard for p0.
+
+## DEDUPLICATION
+
+Merge related insights. "Claude Mindshare" and "Claude/Anthropic Momentum" are the same insight — pick the better framing and combine.
+Maximum 2 insights per broad topic area. If you have 3 LLM-related insights, merge the weakest into the strongest.
 
 ## Panel
 
 `;
+
     // Group sources by trust tier
     const byTier: Record<string, string[]> = {};
     for (const source of Object.keys(grouped)) {
@@ -174,19 +216,15 @@ ${llmKnowledge}
 
   prompt += `## Analysis Instructions
 
-Identify:
-1. **Emerging trends** — topics appearing across multiple sources with convergence
-2. **Consensus signals** — where curators with different biases agree
-3. **Divergence** — where different trust tiers disagree
-4. **Tool mentions** — new tools, APIs, libraries, or capabilities being discussed
-5. **Gaps** — important developments missing from the feeds
+For each potential insight, apply the anti-noise filter FIRST. Then categorize:
 
-## Priority Tiers
+1. **Absence** — what's missing that should be here? (most valuable)
+2. **Reversal** — what changed direction from previous consensus?
+3. **Cross-domain surprise** — unexpected source/topic combinations
+4. **Specific trend** — a NAMED, SPECIFIC development (not "AI is trending")
+5. **Divergence** — where do different trust tiers disagree on the same topic?
 
-Assign a priority to each insight:
-- **p0**: Topic appears in 3+ sources with DIFFERENT trust tiers AND/OR has high velocity (>50% increase) — "act now"
-- **p1**: Topic in 2 sources OR high confidence single-source — "watch closely"
-- **p2**: Emerging single-source signal — "monitor"
+Every insight MUST pass the "so what?" test: state what a reader should DO differently because of this information.
 
 ## Output Format
 
@@ -195,8 +233,8 @@ Return ONLY a JSON array. No markdown, no explanation. Each object:
 [
   {
     "insight_type": "trend" | "consensus" | "divergence" | "tool_mention" | "gap",
-    "topic": "short topic name",
-    "summary": "2-3 sentence synthesis with evidence from signals",
+    "topic": "specific, named topic (not generic category)",
+    "summary": "2-3 sentences. Be SPECIFIC: name papers, tools, people, companies. End with the 'so what' — what should the reader do with this information?",
     "confidence": 0.0-1.0,
     "priority": "p0" | "p1" | "p2",
     "sources": ["source-name-1", "source-name-2"],
@@ -205,7 +243,8 @@ Return ONLY a JSON array. No markdown, no explanation. Each object:
 ]
 \`\`\`
 
-Return 5-15 insights, ordered by priority (p0 first), then confidence.`;
+Return 8-12 insights. Quality over quantity. Zero noise. Order by priority (p0 first), then confidence.
+p0 count should be 1-3 at most — reserve it for genuinely surprising findings.`;
 
   return prompt;
 }

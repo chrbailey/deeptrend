@@ -106,11 +106,11 @@ describe('Compressed prompt building', () => {
 
     const prompt = buildPrompt(signals);
 
-    expect(prompt).toContain('Priority Tiers');
     expect(prompt).toContain('p0');
     expect(prompt).toContain('p1');
     expect(prompt).toContain('p2');
     expect(prompt).toContain('"priority"');
+    expect(prompt).toContain('anti-noise filter');
   });
 
   it('aggregates by primary tag instead of listing individual signals', () => {
@@ -187,8 +187,9 @@ describe('LLM Counsel prompt (V3)', () => {
     const prompt = buildPrompt(signals);
 
     expect(prompt).toContain('LLM Counsel');
-    expect(prompt).toContain('FIND CONVERGENCE');
-    expect(prompt).toContain('WEIGHT BY TRUST');
+    expect(prompt).toContain('ANTI-NOISE FILTER');
+    expect(prompt).toContain('ABSENCE');
+    expect(prompt).toContain('REVERSALS');
     expect(prompt).toContain('Panel');
   });
 
@@ -263,7 +264,7 @@ describe('LLM Counsel prompt (V3)', () => {
 
     const prompt = buildPrompt(signals);
 
-    expect(prompt).toContain('Gaps');
+    expect(prompt).toContain('Absence');
     expect(prompt).toContain('"gap"');
   });
 });
