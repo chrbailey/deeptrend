@@ -76,10 +76,16 @@ export async function insertInsights(insights: Insight[]): Promise<{ inserted: n
   const errors: string[] = [];
   let inserted = 0;
 
-  const rows = insights.map((i) => ({
-    ...i,
-    analyzed_at: new Date().toISOString(),
-  }));
+  // Strip fields not in DB schema; remap 'gap' to 'divergence' until migration runs
+  const VALID_TYPES = new Set(['trend', 'consensus', 'divergence', 'tool_mention']);
+  const rows = insights.map((i) => {
+    const { convergence_tiers, ...rest } = i as Insight & { convergence_tiers?: string[] };
+    return {
+      ...rest,
+      insight_type: VALID_TYPES.has(rest.insight_type) ? rest.insight_type : 'divergence',
+      analyzed_at: new Date().toISOString(),
+    };
+  });
 
   const { data, error } = await db
     .from('insights')

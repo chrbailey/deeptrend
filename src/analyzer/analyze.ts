@@ -297,10 +297,10 @@ async function runClaudeAnalysis(prompt: string): Promise<Insight[]> {
   const { spawn } = await import('node:child_process');
 
   return new Promise((resolve, reject) => {
-    const proc = spawn(CLAUDE_CLI, ['-p', '--output-format', 'text', '--no-session-persistence', '--max-turns', '1'], {
+    const proc = spawn(CLAUDE_CLI, ['-p', '--output-format', 'text', '--no-session-persistence', '--max-turns', '3'], {
       stdio: ['pipe', 'pipe', 'pipe'],
       env: { ...process.env, CLAUDECODE: '' },
-      timeout: 120_000,
+      timeout: 180_000,
     });
 
     let stdout = '';
