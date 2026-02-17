@@ -8,7 +8,7 @@ const SUBREDDITS = [
   'singularity',
 ];
 
-const USER_AGENT = process.env.REDDIT_USER_AGENT || 'deeptrend/0.1.0';
+const USER_AGENT = process.env.REDDIT_USER_AGENT || 'deeptrend/0.2.0';
 
 interface RedditPost {
   data: {
@@ -31,14 +31,69 @@ interface RedditListing {
   };
 }
 
+// OAuth token cache
+let cachedToken: { token: string; expiresAt: number } | null = null;
+
+async function getOAuthToken(): Promise<string | null> {
+  const clientId = process.env.REDDIT_CLIENT_ID;
+  const clientSecret = process.env.REDDIT_CLIENT_SECRET;
+  const username = process.env.REDDIT_USERNAME;
+  const password = process.env.REDDIT_PASSWORD;
+
+  if (!clientId || !clientSecret || !username || !password) {
+    return null; // Fall back to unauthenticated
+  }
+
+  // Return cached token if still valid (with 60s buffer)
+  if (cachedToken && Date.now() < cachedToken.expiresAt - 60_000) {
+    return cachedToken.token;
+  }
+
+  try {
+    const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+    const res = await fetch('https://www.reddit.com/api/v1/access_token', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Basic ${credentials}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': USER_AGENT,
+      },
+      body: `grant_type=password&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+    });
+
+    if (!res.ok) {
+      console.error(`Reddit OAuth failed: ${res.status}`);
+      return null;
+    }
+
+    const data = await res.json() as { access_token: string; expires_in: number };
+    cachedToken = {
+      token: data.access_token,
+      expiresAt: Date.now() + data.expires_in * 1000,
+    };
+    return cachedToken.token;
+  } catch (err) {
+    console.error(`Reddit OAuth error: ${err instanceof Error ? err.message : String(err)}`);
+    return null;
+  }
+}
+
 async function scrapeSubreddit(subreddit: string): Promise<{ signals: RawSignal[]; errors: string[] }> {
   const errors: string[] = [];
   const signals: RawSignal[] = [];
 
   try {
-    const res = await fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=25`, {
-      headers: { 'User-Agent': USER_AGENT },
-    });
+    const token = await getOAuthToken();
+    const baseUrl = token
+      ? `https://oauth.reddit.com/r/${subreddit}/hot.json?limit=25`
+      : `https://www.reddit.com/r/${subreddit}/hot.json?limit=25`;
+
+    const headers: Record<string, string> = { 'User-Agent': USER_AGENT };
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    const res = await fetch(baseUrl, { headers });
 
     if (!res.ok) {
       errors.push(`Reddit r/${subreddit} returned ${res.status}`);

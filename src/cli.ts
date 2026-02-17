@@ -148,7 +148,8 @@ program
 
     console.log(`Velocity updates: ${totalVelocityUpdates} signals updated across ${velocityScores.length} topics`);
 
-    if (allErrors.length > 0) {
+    if (totalSignals === 0 && allErrors.length > 0) {
+      // Only fail if we got nothing — partial success is still success
       process.exit(1);
     }
   });
