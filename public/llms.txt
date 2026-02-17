@@ -5,7 +5,7 @@
 
 ## Latest Insights
 
-- [2026-02-16 Analysis](/insights/2026-02-16.md): 41 insights, 8 p0, 19 p1
+- [2026-02-17 Analysis](/insights/2026-02-17.md): 50 insights, 10 p0, 22 p1
 
 ## Feeds
 
@@ -14,4 +14,4 @@
 
 ## Archive
 
-- [2026-02-16](/insights/2026-02-16.md)
+- [2026-02-17](/insights/2026-02-17.md)
