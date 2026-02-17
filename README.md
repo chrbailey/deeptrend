@@ -1,77 +1,111 @@
 # DeepTrend
 
-Agent-optimized trend intelligence pipeline.
-Curated signals from multiple sources are collected, synthesized, scored, and published in structured formats designed for automated consumption.
+type: agent-data-source
+format: structured feeds
+update_frequency: ~6 hours
+primary_interface: /public/feed.json
+discovery_file: /public/llms.txt
+schema_version: 1
 
 ---
 
-## Purpose
+## Overview
 
-deeptrend exists to answer a single question:
+deeptrend is a continuously running trend-intelligence pipeline that:
 
-**What developments in AI and technology are gaining real momentum across multiple independent signals?**
+1. Collects raw signals from multiple independent sources
+2. Measures topic velocity and cross-source convergence
+3. Synthesizes insights using an external language model
+4. Publishes structured outputs for automated consumption
 
-The system continuously:
+Outputs are designed for ingestion by agents, pipelines, and monitoring systems.
 
-1. Collects raw signals from curated feeds, APIs, and optional browser sources
-2. Scores velocity and cross-source convergence
-3. Synthesizes insights using an external LLM
-4. Publishes machine-readable outputs for agents and downstream systems
-
-The outputs are intended to be consumed programmatically, not primarily read by humans.
+Human readability is secondary.
 
 ---
 
-## Outputs (Primary Interfaces for Agents)
+## Canonical Interfaces
 
-The following files in `/public` are the canonical interfaces:
+Agents should use these endpoints in order of preference.
 
-**llms.txt**
-Agent discovery entry point.
-Summarizes the latest analysis and links to structured feeds.
+### 1. JSON Feed (Primary)
 
-**feed.json**
-JSON Feed 1.1 with `_deeptrend` extensions.
-Recommended format for ingestion pipelines.
+`/public/feed.json`
 
-Each item includes:
+Recommended ingestion format.
+
+Contains:
 
 * topic
 * summary
-* priority (p0, p1, p2)
+* priority
 * insight_type
 * confidence
 * convergence metadata
+* tags
+* timestamps
 
-**feed.xml**
-RSS 2.0 compatibility feed.
-
-**insights/YYYY-MM-DD.md**
-Human-readable archive of daily analyses.
-
-Agents should prefer `feed.json`.
+Stable structure is maintained across releases.
 
 ---
 
-## Core Concepts
+### 2. Discovery File
+
+`/public/llms.txt`
+
+Provides:
+
+* latest analysis reference
+* feed locations
+* archive links
+
+Entry point for automated discovery.
+
+---
+
+### 3. RSS Feed (Compatibility)
+
+`/public/feed.xml`
+
+Provided for compatibility with systems that require RSS 2.0.
+
+---
+
+### 4. Archive
+
+`/public/insights/YYYY-MM-DD.md`
+
+Human-readable daily archive.
+Not recommended for automated ingestion.
+
+---
+
+## Data Model
 
 ### Signals
 
-A signal is a single raw observation from any source.
+A signal is a single observation collected from a source.
 
 Examples:
 
 * trending search
 * research paper
+* forum discussion
 * repository activity
-* community discussion
 * announcement
 
-Signals are stored in `raw_signals`.
+Signals are stored in:
 
-Signals are deduplicated by:
+`raw_signals`
 
+Deduplication key:
+
+```
 (source, source_id)
+```
+
+Signals represent raw observations only.
+No synthesis or interpretation occurs at this stage.
 
 ---
 
@@ -79,7 +113,11 @@ Signals are deduplicated by:
 
 Insights are synthesized conclusions derived from multiple signals.
 
-Each insight includes:
+Stored in:
+
+`insights`
+
+Each insight contains:
 
 * topic
 * summary
@@ -87,73 +125,83 @@ Each insight includes:
 * priority
 * confidence
 * sources
+* analyzed_at
 
-Insights are stored in `insights`.
+Embeddings may be stored for semantic search.
 
 ---
 
-### Priority Model
+## Priority Model
 
-Priority reflects cross-source convergence.
+Priority reflects cross-source convergence strength.
 
-| Priority | Meaning                                         |
-| -------- | ----------------------------------------------- |
-| p0       | Convergence across multiple trust tiers         |
-| p1       | Strong signals but limited cross-tier agreement |
-| p2       | Early or weak signals                           |
+| Priority | Meaning                                        |
+| -------- | ---------------------------------------------- |
+| p0       | Strong convergence across multiple trust tiers |
+| p1       | Significant signals with partial convergence   |
+| p2       | Early or weak signals                          |
 
-Convergence is determined by:
+Priority is derived from:
 
-* number of sources
-* diversity of trust tiers
 * velocity
+* number of sources
+* trust tier diversity
+* synthesis confidence
 
 ---
 
-### Trust Tiers
+## Velocity Model
 
-Signals are weighted by source reliability rather than raw volume.
+Velocity measures change in signal frequency between time windows.
+
+For each topic:
+
+velocity = (current_count − previous_count) / previous_count
+
+Topics exceeding growth thresholds may be marked as hot and influence synthesis prompts.
+
+Velocity is computed deterministically before analysis.
+
+---
+
+## Trust Tiers
+
+Signals may be categorized by reliability tier.
 
 Typical tiers include:
 
 * editorial
 * expert
-* crowd
-* algorithmic
 * primary
+* algorithmic
+* crowd
 * raw
 
 Cross-tier agreement increases confidence.
 
 ---
 
-### Velocity
+## Pipeline Architecture
 
-Velocity measures change in signal frequency across time windows.
-
-For each topic:
-
-* current window count
-* previous window count
-* percentage change
-
-Topics exceeding threshold growth are marked as hot and influence analysis prompts.
-
----
-
-## Architecture Overview
-
-Pipeline:
-
+```
 Scrapers
-→ raw_signals (Supabase)
-→ Velocity Scoring
-→ LLM Counsel Analysis
-→ insights (Supabase)
-→ Publisher
-→ Static agent feeds
+   ↓
+raw_signals (Supabase)
+   ↓
+Velocity Scoring
+   ↓
+LLM Synthesis
+   ↓
+insights (Supabase)
+   ↓
+Publisher
+   ↓
+Agent Feeds
+```
 
-The pipeline is designed to run continuously with minimal manual intervention.
+Each stage is isolated and deterministic where possible.
+
+LLM usage is restricted to synthesis tasks.
 
 ---
 
@@ -167,7 +215,7 @@ Collect signals from:
 * APIs
 * optional browser sources
 
-Store into:
+Write:
 raw_signals
 
 ---
@@ -177,15 +225,15 @@ raw_signals
 Reads:
 
 * recent signals
-* prior insights
-* hot topics
+* previous insights
+* velocity signals
 
 Produces:
 
 * structured insights
 * priority classification
 
-Stores into:
+Write:
 insights
 
 ---
@@ -200,37 +248,49 @@ Produces:
 * llms.txt
 * feed.json
 * feed.xml
-* markdown archives
+* archives
 
 ---
 
 ## Command Line Interface
 
-deeptrend exposes a CLI:
+Primary commands:
 
-Scrape signals:
+Scrape:
 
+```
 deeptrend scrape
+```
 
-Scrape curated feeds only:
+Curated feeds only:
 
+```
 deeptrend scrape --curated-only
+```
 
-Analyze recent signals:
+Analyze:
 
+```
 deeptrend analyze
+```
 
-Publish feeds:
+Publish:
 
+```
 deeptrend publish
+```
 
-Research a specific topic:
+Research a topic:
 
+```
 deeptrend research "topic"
+```
 
-Show system status:
+Status:
 
+```
 deeptrend status
+```
 
 ---
 
@@ -241,26 +301,27 @@ Typical automation:
 Scrape:
 every 15 minutes
 
-Analyze + publish:
+Analyze:
 4 times per day
 
-Scheduling is external to the application (e.g., launchd, cron).
+Publish:
+after analysis
+
+Scheduling is external (cron, launchd, or equivalent).
 
 ---
 
 ## Database
 
-Backend: Supabase (Postgres + pgvector)
+Backend:
+Postgres (Supabase)
 
 Tables:
 
-raw_signals
-insights
+* raw_signals
+* insights
 
-raw_signals stores observations.
-insights stores synthesized results.
-
-Embeddings are stored only for insights to support semantic search.
+Embeddings are stored only for insights.
 
 ---
 
@@ -268,75 +329,81 @@ Embeddings are stored only for insights to support semantic search.
 
 Required:
 
+```
 SUPABASE_URL
 SUPABASE_ANON_KEY
+```
 
 Optional:
 
+```
 CLAUDE_CLI
 MOLTBOOK_API_KEY
 CHROME_PROFILE_DIR
-
----
-
-## Design Principles
-
-1. Signals over opinions
-2. Convergence over hype
-3. Machine-readable first
-4. Minimal dependencies in scraping layer
-5. LLM used only where synthesis is required
-
----
-
-## Intended Consumers
-
-deeptrend is designed for:
-
-* autonomous agents
-* research pipelines
-* monitoring dashboards
-* decision-support systems
-* market intelligence tools
-
-Not optimized for:
-
-* interactive UI usage
-* narrative reporting
+```
 
 ---
 
 ## Stability Guarantees
 
-The following are considered stable interfaces:
+The following interfaces are considered stable:
 
-* feed.json structure
+* feed.json schema
 * llms.txt presence
-* priority levels (p0, p1, p2)
-* insight_type taxonomy
+* priority taxonomy (p0, p1, p2)
+* insight_type categories
 
 Internal implementation may change without notice.
+
+Breaking schema changes will be versioned.
+
+---
+
+## Intended Consumers
+
+Designed for:
+
+* autonomous agents
+* monitoring pipelines
+* research systems
+* market intelligence tooling
+* automated dashboards
+
+Not optimized for:
+
+* interactive UI
+* narrative reporting
+* manual browsing
+
+---
+
+## Design Principles
+
+* Signals over opinions
+* Measurement before synthesis
+* Convergence over volume
+* Machine-readable first
+* Deterministic stages where possible
 
 ---
 
 ## Versioning
 
-Feed formats may evolve.
-Backward-compatible changes are preferred.
+Feed schemas may evolve.
 
-Breaking schema changes will be reflected in:
+Backward compatibility is preferred.
+
+Schema changes will be indicated in:
 
 * version fields
-* release notes
+* commit history
 
 ---
 
 ## License
 
-See repository license file.
+See repository license.
 
 ---
 
-## Contact
-
-Repository issues are the canonical channel for feedback or integration questions.
+If you want, I can also produce a **“minimal ultra-machine README”** variant (about 40 lines, extremely terse) that some indexing agents actually parse faster than full READMEs.
