@@ -6,114 +6,85 @@
   "description": "Curated from 14+ sources, synthesized via LLM Counsel, published for agent consumption.",
   "items": [
     {
-      "id": "2026-02-17-insight-1",
-      "title": "Safety/alignment research absent during OpenAI signal surge",
-      "content_text": "OpenAI signals jumped +13,600% (6→822) but NONE of the signal groups across any source mention safety, alignment, or responsible AI. During a period of massive capability announcements from OpenAI, the complete absence of safety discourse across all 5 sources — including Reddit's r/singularity and r/MachineLearning where safety debates typically surface — suggests either safety framing has been fully absorbed into product marketing or the research community has stopped treating safety as a distinct concern. Monitor whether this is permanent narrative death or temporary displacement.",
-      "date_published": "2026-02-17T02:02:14.191Z",
+      "id": "2026-02-21-insight-1",
+      "title": "Expert and primary tiers completely silent — 9 of 13 curated feeds produced zero signals",
+      "content_text": "Simon Willison, Import AI, AlphaSignal, Last Week in AI, Ahead of AI, MarkTechPost, OpenAI News, Google Research, and BAIR all produced zero signals this cycle. Only 4 of 5 panel tiers are active (raw, crowd, editor, algorithm — no expert, no primary). When crowd and raw tiers are noisy but experts are silent, the discourse is unfiltered — there's no editorial layer interpreting events. Either verify feeds aren't broken, or note that this window's signals lack the expert curation that makes convergence meaningful. Treat all insights this cycle with lower confidence until expert commentary catches up.",
+      "date_published": "2026-02-21T08:02:27.703Z",
       "tags": [
         "p0",
         "divergence",
-        "reddit",
-        "google-trends",
-        "techmeme"
+        "Reddit",
+        "HN Digest",
+        "TechMeme",
+        "Google Trends",
+        "GitHub Trending"
       ],
       "_deeptrend": {
         "priority": "p0",
         "insight_type": "divergence",
-        "confidence": 0.75,
+        "confidence": 0.82,
         "convergence": {
-          "source_count": 3,
+          "source_count": 5,
           "sources": [
-            "reddit",
-            "google-trends",
-            "techmeme"
+            "Reddit",
+            "HN Digest",
+            "TechMeme",
+            "Google Trends",
+            "GitHub Trending"
           ],
           "trust_tiers": {
-            "raw": 2,
-            "editor": 1
+            "raw": 5
           }
         }
       }
     },
     {
-      "id": "2026-02-17-insight-2",
-      "title": "Anthropic/Claude silence during OpenAI dominance cycle",
-      "content_text": "Across 52 signals from 5 sources with different biases, there is zero mention of Anthropic, Claude, or any Anthropic product. OpenAI occupies 7 of 22 Reddit signal groups, dominates Google Trends velocity, yet Anthropic is invisible. For a company that was neck-and-neck on capability benchmarks in mid-2025 with Claude Opus 4, this absence from the discourse is notable. Either Anthropic is in a pre-launch quiet period, or OpenAI has successfully captured the entire narrative window. Watch for an Anthropic announcement that could snap attention back.",
-      "date_published": "2026-02-17T02:02:14.191Z",
+      "id": "2026-02-21-insight-2",
+      "title": "Safety/alignment discourse absent while 'agency' and 'deployed' enter velocity",
+      "content_text": "Zero safety, alignment, or governance signals across any tier, while 'deployed' (+100% from zero) and 'agency' (+100% from zero) both entered velocity simultaneously. Historically, deployment acceleration without concurrent safety discussion precedes regulatory or incident-driven corrections. The EU AI Act general-purpose AI obligations hit Aug 2025 — if agents are being deployed at scale without safety discourse, either compliance is being treated as solved (unlikely) or practitioners have decoupled safety from deployment conversations. If you're shipping agent systems, this gap is your risk surface.",
+      "date_published": "2026-02-21T08:02:27.703Z",
       "tags": [
         "p0",
         "divergence",
-        "reddit",
-        "google-trends",
-        "techmeme",
-        "hn-digest"
+        "Reddit",
+        "HN Digest",
+        "Google Trends"
       ],
       "_deeptrend": {
         "priority": "p0",
+        "insight_type": "divergence",
+        "confidence": 0.73,
+        "convergence": {
+          "source_count": 3,
+          "sources": [
+            "Reddit",
+            "HN Digest",
+            "Google Trends"
+          ],
+          "trust_tiers": {
+            "raw": 3
+          }
+        }
+      }
+    },
+    {
+      "id": "2026-02-21-insight-3",
+      "title": "LocalLLaMA community maturation — 'resources' overtaking 'discussion' as top tag",
+      "content_text": "LocalLLaMA (11 signals) continues to outpace r/OpenAI (10 signals) in volume, but the tag distribution shift matters more: 'resources' (4) and 'discussion' (3) dominate LocalLLaMA, while r/OpenAI leads with 'news' (4) and 'question' (3). The self-hosted community has moved past excitement into tooling and resource-sharing — a maturation signal. r/OpenAI's 'question' dominance suggests their audience is consuming, not building. For toolmakers: the local-first developer is now a builder persona, not an experimenter persona. Ship accordingly.",
+      "date_published": "2026-02-21T08:02:27.703Z",
+      "tags": [
+        "p1",
+        "divergence",
+        "Reddit"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
         "insight_type": "divergence",
         "confidence": 0.7,
         "convergence": {
-          "source_count": 4,
-          "sources": [
-            "reddit",
-            "google-trends",
-            "techmeme",
-            "hn-digest"
-          ],
-          "trust_tiers": {
-            "raw": 2,
-            "editor": 1,
-            "crowd": 1
-          }
-        }
-      }
-    },
-    {
-      "id": "2026-02-17-insight-3",
-      "title": "Simon Willison's LLM/tools focus vs mainstream OpenAI fixation",
-      "content_text": "Simon Willison's single signal is tagged 'llm, tools, open-source' — practical developer tooling — while the rest of the ecosystem is fixated on OpenAI product announcements. This is a characteristic Willison pattern: when everyone else chases announcements, he focuses on what you can actually build. His silence on the OpenAI surge (only 1 signal total) suggests the announcements may be less technically significant than the volume implies. If Willison isn't writing about it, ask whether the OpenAI velocity is news or noise.",
-      "date_published": "2026-02-17T02:02:14.191Z",
-      "tags": [
-        "p1",
-        "divergence",
-        "simon-willison",
-        "reddit"
-      ],
-      "_deeptrend": {
-        "priority": "p1",
-        "insight_type": "divergence",
-        "confidence": 0.65,
-        "convergence": {
-          "source_count": 2,
-          "sources": [
-            "simon-willison",
-            "reddit"
-          ],
-          "trust_tiers": {
-            "expert": 1,
-            "raw": 1
-          }
-        }
-      }
-    },
-    {
-      "id": "2026-02-17-insight-4",
-      "title": "Open-source/open-weight model discussion absent",
-      "content_text": "Despite DeepSeek R1 and Llama 4 being recent major releases per LLM knowledge, there are zero signals about open-weight models across any source. LocalLLaMA (5 signals) is active but tagged 'discussion' and 'resources' — not new model excitement. The open-source AI narrative appears to have stalled. This matters because if the discourse has shifted entirely to closed-model providers (OpenAI dominance in these signals), it may indicate the open-weight competitive window is perceived as closing. Researchers betting on open models should assess whether this is temporary or structural.",
-      "date_published": "2026-02-17T02:02:14.191Z",
-      "tags": [
-        "p1",
-        "divergence",
-        "reddit"
-      ],
-      "_deeptrend": {
-        "priority": "p1",
-        "insight_type": "divergence",
-        "confidence": 0.6,
-        "convergence": {
           "source_count": 1,
           "sources": [
-            "reddit"
+            "Reddit"
           ],
           "trust_tiers": {
             "raw": 1
@@ -122,106 +93,52 @@
       }
     },
     {
-      "id": "2026-02-17-insight-5",
-      "title": "Video generation velocity spike (+500%)",
-      "content_text": "Video generation signals jumped 500% (1→6), and 'generation' as a broader category is also +500% (2→12). Cross-reference with the OpenAI surge suggests this is likely tied to Sora or a successor product. The interesting signal is that video generation is spiking in Google Trends (search interest) simultaneously — meaning it's crossing from AI-insider to mainstream consumer awareness. If you're building on video generation APIs, the competitive window for differentiation is closing as this commoditizes.",
-      "date_published": "2026-02-17T02:02:14.191Z",
+      "id": "2026-02-21-insight-4",
+      "title": "TechMeme (editor) covering Claude — crowd/raw tiers don't match",
+      "content_text": "Claude appeared in TechMeme's editorial picks (business/mainstream tech coverage) while 'claude' velocity is only +100% from zero in raw signals — a single new mention. Editor-tier covering something the crowd isn't excited about typically means enterprise/business adoption narrative, not developer momentum. Compare to previous cycles where developer excitement leads editor coverage. If Anthropic is getting TechMeme placement without Reddit/HN amplification, this is a B2B story, not a developer community story. Adjust your mental model of Claude's adoption vector accordingly.",
+      "date_published": "2026-02-21T08:02:27.703Z",
       "tags": [
         "p1",
-        "trend",
-        "google-trends"
+        "divergence",
+        "TechMeme",
+        "Reddit",
+        "Google Trends"
       ],
       "_deeptrend": {
         "priority": "p1",
-        "insight_type": "trend",
-        "confidence": 0.6,
-        "convergence": {
-          "source_count": 1,
-          "sources": [
-            "google-trends"
-          ],
-          "trust_tiers": {
-            "raw": 1
-          }
-        }
-      }
-    },
-    {
-      "id": "2026-02-17-insight-6",
-      "title": "HN Digest visual/developer signal vs Reddit OpenAI fixation",
-      "content_text": "HN Digest's single signal is tagged 'developer, visual' — suggesting developer tooling with visual/UI components trending in the HN community. Meanwhile Reddit is dominated by OpenAI discussion. This tier divergence (crowd vs raw) suggests the builder community is focused on practical tooling while the broader community is consuming announcements. If you're building developer tools, the HN community is your signal — ignore the OpenAI noise in Reddit.",
-      "date_published": "2026-02-17T02:02:14.191Z",
-      "tags": [
-        "p2",
-        "divergence",
-        "hn-digest",
-        "reddit"
-      ],
-      "_deeptrend": {
-        "priority": "p2",
         "insight_type": "divergence",
-        "confidence": 0.55,
-        "convergence": {
-          "source_count": 2,
-          "sources": [
-            "hn-digest",
-            "reddit"
-          ],
-          "trust_tiers": {
-            "crowd": 1,
-            "raw": 1
-          }
-        }
-      }
-    },
-    {
-      "id": "2026-02-17-insight-7",
-      "title": "EU AI Act enforcement absent from discourse",
-      "content_text": "The EU AI Act began enforcement in February 2025 (per LLM knowledge), with compliance deadlines extending through 2027. Yet there are zero signals about regulation, compliance, or governance across any source. For a regulation that bans specific AI practices and affects every major AI company, this silence is striking. Either companies have quietly adapted, or the enforcement has been weaker than expected. Legal and compliance teams should not assume silence means irrelevance — check whether enforcement actions have begun.",
-      "date_published": "2026-02-17T02:02:14.191Z",
-      "tags": [
-        "p2",
-        "divergence",
-        "google-trends",
-        "techmeme",
-        "reddit"
-      ],
-      "_deeptrend": {
-        "priority": "p2",
-        "insight_type": "divergence",
-        "confidence": 0.55,
+        "confidence": 0.68,
         "convergence": {
           "source_count": 3,
           "sources": [
-            "google-trends",
-            "techmeme",
-            "reddit"
+            "TechMeme",
+            "Reddit",
+            "Google Trends"
           ],
           "trust_tiers": {
-            "raw": 2,
-            "editor": 1
+            "raw": 3
           }
         }
       }
     },
     {
-      "id": "2026-02-17-insight-8",
-      "title": "Robotics signal emergence (+200%)",
-      "content_text": "Robotics went from 1 to 3 signals (+200%). Small absolute numbers but notable because robotics has been conspicuously absent from AI discourse for months despite massive funding (Figure, 1X, etc). This could be an early indicator of a narrative shift from software-only AI to embodied AI. Cross-reference with the video/generation spike — if the same models powering video generation are being applied to robotic control (world models), this is a convergence worth tracking before it becomes obvious.",
-      "date_published": "2026-02-17T02:02:14.191Z",
+      "id": "2026-02-21-insight-5",
+      "title": "Effect-TS trending on GitHub — typed algebraic effects entering agent tooling ecosystem",
+      "content_text": "effect-ts and effect-smol appeared in GitHub Trending (algorithm tier) this cycle. Effect is a TypeScript library implementing algebraic effects — structured concurrency, typed error handling, dependency injection — patterns that solve exactly the composability problems agent orchestration frameworks struggle with. This is not 'another framework'; it's a paradigm shift for TypeScript async code. If this is crossing from functional programming niche into trending, developers may be adopting it for agent pipeline reliability. Evaluate whether your TypeScript agent code would benefit from Effect's error channel and dependency injection patterns.",
+      "date_published": "2026-02-21T08:02:27.703Z",
       "tags": [
         "p1",
         "trend",
-        "google-trends"
+        "GitHub Trending"
       ],
       "_deeptrend": {
         "priority": "p1",
         "insight_type": "trend",
-        "confidence": 0.5,
+        "confidence": 0.65,
         "convergence": {
           "source_count": 1,
           "sources": [
-            "google-trends"
+            "GitHub Trending"
           ],
           "trust_tiers": {
             "raw": 1
@@ -230,51 +147,129 @@
       }
     },
     {
-      "id": "2026-02-17-insight-9",
-      "title": "MCP protocol absent despite claimed 'industry standard' status",
-      "content_text": "Model Context Protocol was supposedly adopted by OpenAI, Google, Microsoft per LLM knowledge and described as becoming 'the de facto standard.' Yet zero signals mention MCP, tool integration standards, or protocol-level infrastructure across any source. Either MCP adoption has plateaued after the initial hype, or it's been so thoroughly absorbed that it's no longer newsworthy. Builders relying on MCP should verify whether competitors are still investing in it or quietly moving to alternatives.",
-      "date_published": "2026-02-17T02:02:14.191Z",
+      "id": "2026-02-21-insight-6",
+      "title": "'news' velocity +400% — discourse shifted from analysis to breaking events",
+      "content_text": "The 'news' tag jumped from 1 to 5 signals (+400%), the largest velocity spike this cycle. Concurrent velocity entries for 'released', 'code', and 'killing' suggest multiple product launches or announcements drove the shift. When discourse moves from 'discussion' and 'research' to 'news', the signal-to-noise ratio typically drops as hot takes outpace analysis. This is a meta-signal: whatever happened in the last window, the expert tier hasn't processed it yet (see: expert silence). Wait for expert-tier commentary before updating priors on whatever broke.",
+      "date_published": "2026-02-21T08:02:27.703Z",
       "tags": [
-        "p2",
-        "divergence",
-        "simon-willison",
-        "hn-digest"
+        "p1",
+        "trend",
+        "Reddit",
+        "HN Digest"
       ],
       "_deeptrend": {
-        "priority": "p2",
-        "insight_type": "divergence",
-        "confidence": 0.5,
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.62,
         "convergence": {
           "source_count": 2,
           "sources": [
-            "simon-willison",
-            "hn-digest"
+            "Reddit",
+            "HN Digest"
           ],
           "trust_tiers": {
-            "expert": 1,
-            "crowd": 1
+            "raw": 2
           }
         }
       }
     },
     {
-      "id": "2026-02-17-insight-10",
-      "title": "Reddit r/OpenAI question-heavy signal pattern",
-      "content_text": "Of 7 r/OpenAI signals, 3 are tagged 'question' vs only 1 'news'. A question-dominant signal pattern in a product subreddit typically indicates user confusion or rapid product changes that documentation hasn't caught up with. This is a weak but specific signal: OpenAI may be shipping faster than users can absorb, creating support burden. If you compete with OpenAI products, their users' confusion is your acquisition opportunity — build better onboarding for the same capabilities.",
-      "date_published": "2026-02-17T02:02:14.191Z",
+      "id": "2026-02-21-insight-7",
+      "title": "'deployed' entering velocity — agent systems crossing to production",
+      "content_text": "The term 'deployed' appeared at +100% velocity from zero. In a cycle where 'agency', 'code', and 'released' are also new velocity terms, this suggests agent systems are moving from prototype to production environments. This is a phase transition signal — the conversation is shifting from 'what can agents do?' to 'what are agents doing in production?' Track whether deployment-related signals persist next cycle; if sustained, expect a wave of production incident reports and reliability tooling within 4-8 weeks.",
+      "date_published": "2026-02-21T08:02:27.703Z",
       "tags": [
         "p2",
         "trend",
-        "reddit"
+        "Reddit",
+        "Google Trends"
       ],
       "_deeptrend": {
         "priority": "p2",
         "insight_type": "trend",
+        "confidence": 0.55,
+        "convergence": {
+          "source_count": 2,
+          "sources": [
+            "Reddit",
+            "Google Trends"
+          ],
+          "trust_tiers": {
+            "raw": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "2026-02-21-insight-8",
+      "title": "r/MachineLearning underweight — only 5 signals vs 21 from LocalLLaMA+OpenAI combined",
+      "content_text": "r/MachineLearning produced only 5 signals (research-tagged) against 21 from the two practitioner subreddits. The academic ML subreddit being drowned out by practitioner communities suggests the research-to-practice pipeline is shortening — or that academic ML discussion is migrating to other venues (Twitter/X, Mastodon, or direct paper discussion on HuggingFace). If you rely on r/MachineLearning as a research signal, consider adding HuggingFace Papers or Semantic Scholar trending as a supplementary source.",
+      "date_published": "2026-02-21T08:02:27.703Z",
+      "tags": [
+        "p2",
+        "divergence",
+        "Reddit"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "divergence",
+        "confidence": 0.52,
+        "convergence": {
+          "source_count": 1,
+          "sources": [
+            "Reddit"
+          ],
+          "trust_tiers": {
+            "raw": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "2026-02-21-insight-9",
+      "title": "'killing' entering velocity from zero — disruption narrative or safety alarm",
+      "content_text": "The term 'killing' appeared at +100% velocity from zero baseline alongside 'agency' and 'deployed'. In AI discourse, 'killing' typically appears in either disruption framing ('X is killing Y') or existential risk context. Combined with expert-tier silence on safety, this is worth disambiguating: if it's disruption narrative (e.g., 'AI agents killing SaaS'), it's market signal; if it's safety-adjacent, the absence of formal safety discourse makes it more concerning. Check the originating signal to classify.",
+      "date_published": "2026-02-21T08:02:27.703Z",
+      "tags": [
+        "p2",
+        "trend",
+        "Google Trends",
+        "Reddit"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "trend",
+        "confidence": 0.48,
+        "convergence": {
+          "source_count": 2,
+          "sources": [
+            "Google Trends",
+            "Reddit"
+          ],
+          "trust_tiers": {
+            "raw": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "2026-02-21-insight-10",
+      "title": "HN 'meta' discussion — community reflexivity signal",
+      "content_text": "HN Digest tagged one signal as 'meta' at +100% velocity from zero. Meta-discussion on HN (about HN itself, about tech culture, about AI content policy) historically clusters around community inflection points — the last major one preceded HN's AI content moderation changes. With 'deployed' and 'agency' also entering velocity, HN may be processing what AI agents mean for their community norms. Monitor next cycle for whether this expands — HN meta-discussion often predicts broader tech culture shifts by 2-4 weeks.",
+      "date_published": "2026-02-21T08:02:27.703Z",
+      "tags": [
+        "p2",
+        "divergence",
+        "HN Digest"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "divergence",
         "confidence": 0.45,
         "convergence": {
           "source_count": 1,
           "sources": [
-            "reddit"
+            "HN Digest"
           ],
           "trust_tiers": {
             "raw": 1

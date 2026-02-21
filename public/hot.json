@@ -1,64 +1,67 @@
 {
-  "updated": "2026-02-17T02:02:14.191Z",
+  "updated": "2026-02-21T08:02:27.703Z",
   "source": "https://chrbailey.github.io/deeptrend",
   "feed": "https://chrbailey.github.io/deeptrend/feed.json",
   "p0": [
     {
-      "topic": "Safety/alignment research absent during OpenAI signal surge",
+      "topic": "Expert and primary tiers completely silent — 9 of 13 curated feeds produced zero signals",
       "type": "divergence",
-      "confidence": 0.75,
-      "summary": "OpenAI signals jumped +13,600% (6→822) but NONE of the signal groups across any source mention safety, alignment, or responsible AI. During a period of massive capability announcements from OpenAI, the complete absence of safety discourse across all 5 sources — including Reddit's r/singularity and r/MachineLearning where safety debates typically surface — suggests either safety framing has been fully absorbed into product marketing or the research community has stopped treating safety as a distinct concern. Monitor whether this is permanent narrative death or temporary displacement.",
+      "confidence": 0.82,
+      "summary": "Simon Willison, Import AI, AlphaSignal, Last Week in AI, Ahead of AI, MarkTechPost, OpenAI News, Google Research, and BAIR all produced zero signals this cycle. Only 4 of 5 panel tiers are active (raw, crowd, editor, algorithm — no expert, no primary). When crowd and raw tiers are noisy but experts are silent, the discourse is unfiltered — there's no editorial layer interpreting events. Either verify feeds aren't broken, or note that this window's signals lack the expert curation that makes convergence meaningful. Treat all insights this cycle with lower confidence until expert commentary catches up.",
       "sources": [
-        "reddit",
-        "google-trends",
-        "techmeme"
+        "Reddit",
+        "HN Digest",
+        "TechMeme",
+        "Google Trends",
+        "GitHub Trending"
       ]
     },
     {
-      "topic": "Anthropic/Claude silence during OpenAI dominance cycle",
+      "topic": "Safety/alignment discourse absent while 'agency' and 'deployed' enter velocity",
       "type": "divergence",
-      "confidence": 0.7,
-      "summary": "Across 52 signals from 5 sources with different biases, there is zero mention of Anthropic, Claude, or any Anthropic product. OpenAI occupies 7 of 22 Reddit signal groups, dominates Google Trends velocity, yet Anthropic is invisible. For a company that was neck-and-neck on capability benchmarks in mid-2025 with Claude Opus 4, this absence from the discourse is notable. Either Anthropic is in a pre-launch quiet period, or OpenAI has successfully captured the entire narrative window. Watch for an Anthropic announcement that could snap attention back.",
+      "confidence": 0.73,
+      "summary": "Zero safety, alignment, or governance signals across any tier, while 'deployed' (+100% from zero) and 'agency' (+100% from zero) both entered velocity simultaneously. Historically, deployment acceleration without concurrent safety discussion precedes regulatory or incident-driven corrections. The EU AI Act general-purpose AI obligations hit Aug 2025 — if agents are being deployed at scale without safety discourse, either compliance is being treated as solved (unlikely) or practitioners have decoupled safety from deployment conversations. If you're shipping agent systems, this gap is your risk surface.",
       "sources": [
-        "reddit",
-        "google-trends",
-        "techmeme",
-        "hn-digest"
+        "Reddit",
+        "HN Digest",
+        "Google Trends"
       ]
     }
   ],
   "p1": [
     {
-      "topic": "Simon Willison's LLM/tools focus vs mainstream OpenAI fixation",
+      "topic": "LocalLLaMA community maturation — 'resources' overtaking 'discussion' as top tag",
       "type": "divergence",
+      "confidence": 0.7,
+      "sources": [
+        "Reddit"
+      ]
+    },
+    {
+      "topic": "TechMeme (editor) covering Claude — crowd/raw tiers don't match",
+      "type": "divergence",
+      "confidence": 0.68,
+      "sources": [
+        "TechMeme",
+        "Reddit",
+        "Google Trends"
+      ]
+    },
+    {
+      "topic": "Effect-TS trending on GitHub — typed algebraic effects entering agent tooling ecosystem",
+      "type": "trend",
       "confidence": 0.65,
       "sources": [
-        "simon-willison",
-        "reddit"
+        "GitHub Trending"
       ]
     },
     {
-      "topic": "Open-source/open-weight model discussion absent",
-      "type": "divergence",
-      "confidence": 0.6,
-      "sources": [
-        "reddit"
-      ]
-    },
-    {
-      "topic": "Video generation velocity spike (+500%)",
+      "topic": "'news' velocity +400% — discourse shifted from analysis to breaking events",
       "type": "trend",
-      "confidence": 0.6,
+      "confidence": 0.62,
       "sources": [
-        "google-trends"
-      ]
-    },
-    {
-      "topic": "Robotics signal emergence (+200%)",
-      "type": "trend",
-      "confidence": 0.5,
-      "sources": [
-        "google-trends"
+        "Reddit",
+        "HN Digest"
       ]
     }
   ]
