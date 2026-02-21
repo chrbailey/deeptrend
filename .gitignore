@@ -6,3 +6,4 @@ dist/
 *.js.map
 !vitest.config.ts
 .chrome-profile/
+.DS_Store
