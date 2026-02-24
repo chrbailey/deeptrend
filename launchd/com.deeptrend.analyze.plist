@@ -7,16 +7,10 @@
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
-        <string>-c</string>
-        <string>cd "/Volumes/OWC drive/Dev/deeptrend" &amp;&amp; /usr/local/bin/npx tsx src/cli.ts analyze &amp;&amp; /usr/local/bin/npx tsx src/cli.ts publish &amp;&amp; git add public/ &amp;&amp; git commit -m "chore: update published insights $(date +%Y-%m-%d)" --allow-empty &amp;&amp; git push</string>
+        <string>/Volumes/OWC drive/Dev/deeptrend/launchd/analyze-wrapper.sh</string>
     </array>
     <key>WorkingDirectory</key>
     <string>/Volumes/OWC drive/Dev/deeptrend</string>
-    <key>EnvironmentVariables</key>
-    <dict>
-        <key>PATH</key>
-        <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
-    </dict>
     <key>StartCalendarInterval</key>
     <array>
         <dict>

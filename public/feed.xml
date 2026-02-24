@@ -4,100 +4,100 @@
         <title>deeptrend — AI Trend Intelligence</title>
         <link>https://chrbailey.github.io/deeptrend</link>
         <description>Curated from 14+ sources, synthesized via LLM Counsel, published for agent consumption.</description>
-        <lastBuildDate>Mon, 23 Feb 2026 20:03:03 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 24 Feb 2026 04:18:29 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>deeptrend v0.3.0</generator>
         <language>en</language>
         <atom:link href="https://chrbailey.github.io/deeptrend/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[[p0] AI safety discourse absent across all six panel sources]]></title>
-            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-23.md</link>
-            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-23#insight-1</guid>
-            <pubDate>Mon, 23 Feb 2026 20:03:03 GMT</pubDate>
-            <description><![CDATA[Zero signals about AI safety, alignment, governance, or responsible AI from any trust tier this cycle. Reddit's 60 signals span LocalLLaMA, singularity, OpenAI, and MachineLearning — all capabilities-focused. TechMeme's 13 editor-curated stories: zero safety framing. This isn't 'safety is quiet' — it's structurally gone from the conversation during active capabilities discussion. If you track safety-capabilities balance as a leading indicator, the ratio is currently undefined.]]></description>
+            <title><![CDATA[[p2] Velocity scoring pipeline producing numeric ID artifacts instead of topic signals]]></title>
+            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-24.md</link>
+            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-24#insight-1</guid>
+            <pubDate>Tue, 24 Feb 2026 04:18:29 GMT</pubDate>
+            <description><![CDATA[All 10 'hot topics' are numeric strings (225, 229, 230, 233, 234, 300, 330, 334, 335, 427) with trivial 0→1 signal transitions. These are internal identifiers leaking into topic extraction, not meaningful velocity signals. The velocity detection system is generating false positives and masking genuine acceleration patterns. Pipeline fix: verify that topic slugs are extracted from signal content/metadata before velocity calculations, not from source_ids or row numbers.]]></description>
+            <category>p2</category>
+            <category>divergence</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] OpenAI content volume creates systematic noise in feed-based intelligence]]></title>
+            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-24.md</link>
+            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-24#insight-2</guid>
+            <pubDate>Tue, 24 Feb 2026 04:18:29 GMT</pubDate>
+            <description><![CDATA[OpenAI News (205 signals from a single source) produces more raw volume than arXiv's entire 15-category output (50 signals). This isn't proportional to research output — it reflects a content marketing strategy that floods feed-based discovery systems. Their 'learning' tag (16 signals) confirms tutorial/educational content inflating counts. Any intelligence pipeline consuming these feeds uncritically will be OpenAI-narrative-biased by default. Normalize by source before aggregating, or cap per-source signal counts.]]></description>
+            <category>p1</category>
+            <category>divergence</category>
+        </item>
+        <item>
+            <title><![CDATA[[p0] Multi-agent systems research absent despite agent industry boom]]></title>
+            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-24.md</link>
+            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-24#insight-3</guid>
+            <pubDate>Tue, 24 Feb 2026 04:18:29 GMT</pubDate>
+            <description><![CDATA[cs.MA has exactly 1 arXiv signal despite 'agentic AI' dominating industry narrative and multiple agent SDKs shipping in 2025 (OpenAI Agents SDK, Claude Agent SDK, LangGraph). Academic multi-agent research isn't tracking industry product activity — current agent frameworks are engineering integrations, not research breakthroughs. If you're evaluating agent architectures, look at the PL and systems literature rather than cs.MA; the real work is happening in tooling repos, not research papers.]]></description>
             <category>p0</category>
             <category>divergence</category>
         </item>
         <item>
-            <title><![CDATA[[p1] LocalLLaMA outpacing r/OpenAI in signal volume and expert convergence]]></title>
-            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-23.md</link>
-            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-23#insight-2</guid>
-            <pubDate>Mon, 23 Feb 2026 20:03:03 GMT</pubDate>
-            <description><![CDATA[LocalLLaMA generated 21 signals vs r/OpenAI's 16, with active help/question threads indicating new self-hosters onboarding, not just enthusiasts. Simon Willison's expert feed is 100% open-source LLM tooling this cycle — zero proprietary coverage. Expert-crowd convergence on open-weight models is strengthening while proprietary discussion is increasingly question-and-complaint shaped. If you're building agent infrastructure, open-weight deployment gravity is measurably increasing.]]></description>
+            <title><![CDATA[[p1] Google Research output is 92% non-model work while OpenAI is 100% announcements]]></title>
+            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-24.md</link>
+            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-24#insight-4</guid>
+            <pubDate>Tue, 24 Feb 2026 04:18:29 GMT</pubDate>
+            <description><![CDATA[Of 100 Google Research signals, only 8 relate to models — the rest is applied science, infrastructure, and domain research. Meanwhile OpenAI's 205 signals are almost entirely announcements and educational content ('learning': 16 signals). These two primary-tier sources have diverged into completely different content strategies: Google is publishing research breadth, OpenAI is publishing marketing depth. If you're tracking frontier model competition, neither research blog is the right signal source anymore — watch product launches and benchmark results directly.]]></description>
             <category>p1</category>
             <category>divergence</category>
         </item>
         <item>
-            <title><![CDATA[[p1] ML subreddit project-sharing velocity spike (+300%)]]></title>
-            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-23.md</link>
-            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-23#insight-3</guid>
-            <pubDate>Mon, 23 Feb 2026 20:03:03 GMT</pubDate>
-            <description><![CDATA[r/MachineLearning 'project' tag went from 1 to 4 signals — a 300% velocity increase. Simultaneously, tutorial/guide content appeared for the first time this cycle. This is a paper-to-implementation phase transition: the community is building, not just reading. For researchers, this means your papers are being turned into tools faster — check if your work is being correctly implemented or misrepresented in these projects.]]></description>
+            <title><![CDATA[[p1] Computer vision maintains research parity with NLP despite 'language model era' framing]]></title>
+            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-24.md</link>
+            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-24#insight-5</guid>
+            <pubDate>Tue, 24 Feb 2026 04:18:29 GMT</pubDate>
+            <description><![CDATA[cs.CV (8 signals) nearly matches cs.CL (11) on arXiv, and cs.CV cross-lists with cs.AI at a higher rate (6/8 = 75%) than cs.CL does (5/11 = 45%). Vision research is more deeply integrated with general AI work than language research is. The multimodal thesis is playing out in research activity patterns, not just product announcements. Researchers focused purely on text modalities are missing where roughly a third of frontier work is happening.]]></description>
             <category>p1</category>
             <category>trend</category>
         </item>
         <item>
-            <title><![CDATA[[p1] OpenAI primary channel near-silent (1 signal) during high community speculation]]></title>
-            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-23.md</link>
-            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-23#insight-4</guid>
-            <pubDate>Mon, 23 Feb 2026 20:03:03 GMT</pubDate>
-            <description><![CDATA[OpenAI News produced exactly 1 signal (tagged 'longer' — likely a blog post) while r/OpenAI generated 16 community signals dominated by discussion and question threads. The community-to-primary signal ratio is 16:1. Historically, quiet primary channels paired with loud community speculation precede product announcements or pricing changes. Monitor for GPT-5 or o4 release signals in the next 1-2 cycles.]]></description>
+            <title><![CDATA[[p0] AI safety/alignment discourse invisible during active EU AI Act enforcement]]></title>
+            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-24.md</link>
+            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-24#insight-6</guid>
+            <pubDate>Tue, 24 Feb 2026 04:18:29 GMT</pubDate>
+            <description><![CDATA[Zero cs.CY (computers & society) signals across all feeds, no safety-specific topics from any source, despite EU AI Act prohibited practices provisions being actively enforced since Feb 2025 and broader obligations phasing in now. Safety discourse has either migrated entirely to private governance channels and compliance consultancies, or genuinely cooled during a capabilities-dominated period. Check whether your safety-adjacent colleagues have pivoted to compliance work — the research-to-regulation pipeline may have absorbed the talent.]]></description>
+            <category>p0</category>
+            <category>divergence</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] Reddit communities in discussion-heavy consolidation phase]]></title>
+            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-24.md</link>
+            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-24#insight-7</guid>
+            <pubDate>Tue, 24 Feb 2026 04:18:29 GMT</pubDate>
+            <description><![CDATA[r/MachineLearning shows 14 discussion vs 9 research signals; r/LocalLLaMA has 8 discussion vs 3 news; r/OpenAI has 11 discussion vs 4 questions. High discussion-to-discovery ratios across all ML subreddits indicate crowd-tier sources are digesting existing developments, not surfacing new ones. This is characteristic of a plateau between disruptions — the last major shock has been absorbed and communities are waiting for the next inflection. Reduce weight on crowd-tier signals during consolidation phases; they'll echo existing narratives rather than discover new ones.]]></description>
+            <category>p2</category>
+            <category>divergence</category>
+        </item>
+        <item>
+            <title><![CDATA[[p2] Hardware and compute economics absent from all feed tiers]]></title>
+            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-24.md</link>
+            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-24#insight-8</guid>
+            <pubDate>Tue, 24 Feb 2026 04:18:29 GMT</pubDate>
+            <description><![CDATA[Zero signals about custom silicon, chip supply chains, training cost economics, or compute infrastructure despite these being active industry storylines (NVIDIA earnings cycles, custom accelerator deployments, DeepSeek's cost-efficiency narrative still reverberating). The curated feed sources have a blind spot here — hardware/infrastructure discussion lives in earnings calls, semiconductor trade press, and private Slack channels that no RSS feed captures. Researchers making infrastructure or self-hosting decisions need a dedicated hardware intelligence source.]]></description>
+            <category>p2</category>
+            <category>divergence</category>
+        </item>
+        <item>
+            <title><![CDATA[[p1] cs.PL × cs.AI × cs.CR: formal verification entering AI security]]></title>
+            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-24.md</link>
+            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-24#insight-9</guid>
+            <pubDate>Tue, 24 Feb 2026 04:18:29 GMT</pubDate>
+            <description><![CDATA[Programming languages researchers crossing into AI + cryptography/security is a non-obvious arXiv intersection appearing in this cycle. PL techniques — type systems, formal verification, proof assistants — being applied to AI security suggests 'provably safe AI' is transitioning from theoretical interest to active research programs. If you work on AI deployment in regulated environments, track cs.PL venues (PLDI, POPL); they may produce the verification frameworks that EU AI Act compliance will eventually require.]]></description>
             <category>p1</category>
-            <category>divergence</category>
-        </item>
-        <item>
-            <title><![CDATA[[p1] TechMeme all-business framing vs Reddit all-implementation framing]]></title>
-            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-23.md</link>
-            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-23#insight-5</guid>
-            <pubDate>Mon, 23 Feb 2026 20:03:03 GMT</pubDate>
-            <description><![CDATA[TechMeme's 13 signals are tagged 'business' — every single one. Reddit's signals are tagged 'discussion', 'question', 'project'. The editor tier sees AI through a market/enterprise lens while the developer crowd is in pure build mode. When business narrative and technical reality diverge this cleanly, corrections follow — either products underdeliver on hype or technical capabilities outrun business models. Watch for which side adjusts.]]></description>
-            <category>p1</category>
-            <category>divergence</category>
-        </item>
-        <item>
-            <title><![CDATA[[p2] Meme content emerging in r/singularity as AGI hype saturation indicator]]></title>
-            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-23.md</link>
-            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-23#insight-6</guid>
-            <pubDate>Mon, 23 Feb 2026 20:03:03 GMT</pubDate>
-            <description><![CDATA[r/singularity produced 14 signals with a new 'meme' tag (velocity +100% from zero). Meme production is a reliable lagging indicator of mainstream saturation — discourse moves from 'is this real?' to cultural furniture. The singularity/AGI narrative may be peaking in the current hype cycle. Contrarian signal: what the memes mock often points to where the next real development hides.]]></description>
-            <category>p2</category>
             <category>trend</category>
         </item>
         <item>
-            <title><![CDATA[[p2] DeepSeek and Chinese open-weight models absent from all English-language feeds]]></title>
-            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-23.md</link>
-            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-23#insight-7</guid>
-            <pubDate>Mon, 23 Feb 2026 20:03:03 GMT</pubDate>
-            <description><![CDATA[Despite DeepSeek R1's disruption and Qwen establishing a strong open-weight position, zero signals reference Chinese-origin models across all six panel sources. Either the initial shock has been absorbed and normalized (models used without discussion), or there's a geographic attention bias in English-language feeds. If you're benchmarking open-weight: check Qwen and DeepSeek release pages directly — this panel may be blind to that cadence.]]></description>
+            <title><![CDATA[[p2] Game-theoretic AI (cs.GT × cs.AI) has single signal despite agent deployment scaling]]></title>
+            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-24.md</link>
+            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-24#insight-10</guid>
+            <pubDate>Tue, 24 Feb 2026 04:18:29 GMT</pubDate>
+            <description><![CDATA[Only 1 cs.GT × cs.AI signal despite game theory being foundational to multi-agent coordination, mechanism design for AI marketplaces, and competitive agent negotiation. As deployed agents begin transacting with each other through MCP and similar protocols, game-theoretic analysis of agent interactions becomes critical. This is likely underrepresented in feeds rather than underresearched — check AAAI, EC (Economics & Computation), and NeurIPS workshop proceedings directly for this thread.]]></description>
             <category>p2</category>
             <category>divergence</category>
-        </item>
-        <item>
-            <title><![CDATA[[p2] Help-seeking and tutorial velocity surge across Reddit AI communities]]></title>
-            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-23.md</link>
-            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-23#insight-8</guid>
-            <pubDate>Mon, 23 Feb 2026 20:03:03 GMT</pubDate>
-            <description><![CDATA[Question/help tags spiked +100% from zero across multiple subreddits (r/OpenAI 3 questions, r/LocalLLaMA 5 help threads), with tutorial content also appearing for the first time. This suggests a new practitioner cohort entering — likely triggered by recent tool releases or corporate AI mandates. Quality of community answers during onboarding waves creates persistent misconceptions that propagate for months.]]></description>
-            <category>p2</category>
-            <category>trend</category>
-        </item>
-        <item>
-            <title><![CDATA[[p2] MCP and agent-infrastructure tooling absent from developer feeds]]></title>
-            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-23.md</link>
-            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-23#insight-9</guid>
-            <pubDate>Mon, 23 Feb 2026 20:03:03 GMT</pubDate>
-            <description><![CDATA[Neither HN Digest (5 developer-focused signals) nor Simon Willison (4 LLM-tools signals) mentioned MCP, agent frameworks, or tool-use infrastructure. Given MCP's rapid 2025 adoption and agent tooling in production, the absence from expert and crowd tiers suggests infrastructure-to-plumbing transition — it's no longer news, it's assumed. If you're still evaluating agent frameworks, the window for differentiated positioning is closing.]]></description>
-            <category>p2</category>
-            <category>divergence</category>
-        </item>
-        <item>
-            <title><![CDATA[[p2] Startup valuations entering Reddit technical AI discourse]]></title>
-            <link>https://chrbailey.github.io/deeptrend/insights/2026-02-23.md</link>
-            <guid isPermaLink="false">https://chrbailey.github.io/deeptrend/insights/2026-02-23#insight-10</guid>
-            <pubDate>Mon, 23 Feb 2026 20:03:03 GMT</pubDate>
-            <description><![CDATA[Both 'startups' and 'valuations' appeared as new velocity tags this cycle (+100% from zero), while TechMeme maintained all-business framing. Financial discussion bleeding from editor tier into technical communities is a phase indicator — when ML practitioners discuss money, it signals either a funding wave or growing bubble anxiety. Cross-tier convergence on business topics from both editor and raw tiers is worth tracking as a market sentiment proxy.]]></description>
-            <category>p2</category>
-            <category>trend</category>
         </item>
     </channel>
 </rss>

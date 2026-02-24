@@ -5,7 +5,7 @@
 
 ## Latest Insights
 
-- [2026-02-23 Analysis](/insights/2026-02-23.md): 10 insights, 1 p0, 4 p1
+- [2026-02-24 Analysis](/insights/2026-02-24.md): 10 insights, 2 p0, 4 p1
 
 ## Feeds
 
@@ -20,4 +20,4 @@
 
 ## Archive
 
-- [2026-02-23](/insights/2026-02-23.md)
+- [2026-02-24](/insights/2026-02-24.md)

@@ -1,55 +1,62 @@
 {
-  "updated": "2026-02-23T20:03:03.799Z",
+  "updated": "2026-02-24T04:18:29.019Z",
   "source": "https://chrbailey.github.io/deeptrend",
   "feed": "https://chrbailey.github.io/deeptrend/feed.json",
   "p0": [
     {
-      "topic": "AI safety discourse absent across all six panel sources",
+      "topic": "Multi-agent systems research absent despite agent industry boom",
       "type": "divergence",
-      "confidence": 0.8,
-      "summary": "Zero signals about AI safety, alignment, governance, or responsible AI from any trust tier this cycle. Reddit's 60 signals span LocalLLaMA, singularity, OpenAI, and MachineLearning — all capabilities-focused. TechMeme's 13 editor-curated stories: zero safety framing. This isn't 'safety is quiet' — it's structurally gone from the conversation during active capabilities discussion. If you track safety-capabilities balance as a leading indicator, the ratio is currently undefined.",
+      "confidence": 0.82,
+      "summary": "cs.MA has exactly 1 arXiv signal despite 'agentic AI' dominating industry narrative and multiple agent SDKs shipping in 2025 (OpenAI Agents SDK, Claude Agent SDK, LangGraph). Academic multi-agent research isn't tracking industry product activity — current agent frameworks are engineering integrations, not research breakthroughs. If you're evaluating agent architectures, look at the PL and systems literature rather than cs.MA; the real work is happening in tooling repos, not research papers.",
       "sources": [
-        "reddit",
-        "techmeme",
-        "hn-digest",
-        "simon-willison"
+        "arXiv",
+        "Reddit"
+      ]
+    },
+    {
+      "topic": "AI safety/alignment discourse invisible during active EU AI Act enforcement",
+      "type": "divergence",
+      "confidence": 0.76,
+      "summary": "Zero cs.CY (computers & society) signals across all feeds, no safety-specific topics from any source, despite EU AI Act prohibited practices provisions being actively enforced since Feb 2025 and broader obligations phasing in now. Safety discourse has either migrated entirely to private governance channels and compliance consultancies, or genuinely cooled during a capabilities-dominated period. Check whether your safety-adjacent colleagues have pivoted to compliance work — the research-to-regulation pipeline may have absorbed the talent.",
+      "sources": [
+        "arXiv",
+        "BAIR",
+        "Google Research"
       ]
     }
   ],
   "p1": [
     {
-      "topic": "LocalLLaMA outpacing r/OpenAI in signal volume and expert convergence",
+      "topic": "OpenAI content volume creates systematic noise in feed-based intelligence",
       "type": "divergence",
-      "confidence": 0.7,
+      "confidence": 0.88,
       "sources": [
-        "reddit",
-        "simon-willison"
+        "OpenAI News"
       ]
     },
     {
-      "topic": "ML subreddit project-sharing velocity spike (+300%)",
+      "topic": "Google Research output is 92% non-model work while OpenAI is 100% announcements",
+      "type": "divergence",
+      "confidence": 0.8,
+      "sources": [
+        "Google Research",
+        "OpenAI News"
+      ]
+    },
+    {
+      "topic": "Computer vision maintains research parity with NLP despite 'language model era' framing",
+      "type": "trend",
+      "confidence": 0.78,
+      "sources": [
+        "arXiv"
+      ]
+    },
+    {
+      "topic": "cs.PL × cs.AI × cs.CR: formal verification entering AI security",
       "type": "trend",
       "confidence": 0.65,
       "sources": [
-        "reddit"
-      ]
-    },
-    {
-      "topic": "OpenAI primary channel near-silent (1 signal) during high community speculation",
-      "type": "divergence",
-      "confidence": 0.6,
-      "sources": [
-        "openai-news",
-        "reddit"
-      ]
-    },
-    {
-      "topic": "TechMeme all-business framing vs Reddit all-implementation framing",
-      "type": "divergence",
-      "confidence": 0.6,
-      "sources": [
-        "techmeme",
-        "reddit"
+        "arXiv"
       ]
     }
   ]

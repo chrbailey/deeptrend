@@ -6,76 +6,226 @@
   "description": "Curated from 14+ sources, synthesized via LLM Counsel, published for agent consumption.",
   "items": [
     {
-      "id": "2026-02-23-insight-1",
-      "title": "AI safety discourse absent across all six panel sources",
-      "content_text": "Zero signals about AI safety, alignment, governance, or responsible AI from any trust tier this cycle. Reddit's 60 signals span LocalLLaMA, singularity, OpenAI, and MachineLearning — all capabilities-focused. TechMeme's 13 editor-curated stories: zero safety framing. This isn't 'safety is quiet' — it's structurally gone from the conversation during active capabilities discussion. If you track safety-capabilities balance as a leading indicator, the ratio is currently undefined.",
-      "date_published": "2026-02-23T20:03:03.799Z",
+      "id": "2026-02-24-insight-1",
+      "title": "Velocity scoring pipeline producing numeric ID artifacts instead of topic signals",
+      "content_text": "All 10 'hot topics' are numeric strings (225, 229, 230, 233, 234, 300, 330, 334, 335, 427) with trivial 0→1 signal transitions. These are internal identifiers leaking into topic extraction, not meaningful velocity signals. The velocity detection system is generating false positives and masking genuine acceleration patterns. Pipeline fix: verify that topic slugs are extracted from signal content/metadata before velocity calculations, not from source_ids or row numbers.",
+      "date_published": "2026-02-24T04:18:29.019Z",
       "tags": [
-        "p0",
+        "p2",
         "divergence",
-        "reddit",
-        "techmeme",
-        "hn-digest",
-        "simon-willison"
+        "Google Trends"
       ],
       "_deeptrend": {
-        "priority": "p0",
+        "priority": "p2",
         "insight_type": "divergence",
-        "confidence": 0.8,
+        "confidence": 0.93,
         "convergence": {
-          "source_count": 4,
+          "source_count": 1,
           "sources": [
-            "reddit",
-            "techmeme",
-            "hn-digest",
-            "simon-willison"
+            "Google Trends"
           ],
           "trust_tiers": {
-            "raw": 1,
-            "editor": 1,
-            "crowd": 1,
-            "expert": 1
+            "raw": 1
           }
         }
       }
     },
     {
-      "id": "2026-02-23-insight-2",
-      "title": "LocalLLaMA outpacing r/OpenAI in signal volume and expert convergence",
-      "content_text": "LocalLLaMA generated 21 signals vs r/OpenAI's 16, with active help/question threads indicating new self-hosters onboarding, not just enthusiasts. Simon Willison's expert feed is 100% open-source LLM tooling this cycle — zero proprietary coverage. Expert-crowd convergence on open-weight models is strengthening while proprietary discussion is increasingly question-and-complaint shaped. If you're building agent infrastructure, open-weight deployment gravity is measurably increasing.",
-      "date_published": "2026-02-23T20:03:03.799Z",
+      "id": "2026-02-24-insight-2",
+      "title": "OpenAI content volume creates systematic noise in feed-based intelligence",
+      "content_text": "OpenAI News (205 signals from a single source) produces more raw volume than arXiv's entire 15-category output (50 signals). This isn't proportional to research output — it reflects a content marketing strategy that floods feed-based discovery systems. Their 'learning' tag (16 signals) confirms tutorial/educational content inflating counts. Any intelligence pipeline consuming these feeds uncritically will be OpenAI-narrative-biased by default. Normalize by source before aggregating, or cap per-source signal counts.",
+      "date_published": "2026-02-24T04:18:29.019Z",
       "tags": [
         "p1",
         "divergence",
-        "reddit",
-        "simon-willison"
+        "OpenAI News"
       ],
       "_deeptrend": {
         "priority": "p1",
         "insight_type": "divergence",
-        "confidence": 0.7,
+        "confidence": 0.88,
         "convergence": {
-          "source_count": 2,
+          "source_count": 1,
           "sources": [
-            "reddit",
-            "simon-willison"
+            "OpenAI News"
           ],
           "trust_tiers": {
-            "raw": 1,
-            "expert": 1
+            "raw": 1
           }
         }
       }
     },
     {
-      "id": "2026-02-23-insight-3",
-      "title": "ML subreddit project-sharing velocity spike (+300%)",
-      "content_text": "r/MachineLearning 'project' tag went from 1 to 4 signals — a 300% velocity increase. Simultaneously, tutorial/guide content appeared for the first time this cycle. This is a paper-to-implementation phase transition: the community is building, not just reading. For researchers, this means your papers are being turned into tools faster — check if your work is being correctly implemented or misrepresented in these projects.",
-      "date_published": "2026-02-23T20:03:03.799Z",
+      "id": "2026-02-24-insight-3",
+      "title": "Multi-agent systems research absent despite agent industry boom",
+      "content_text": "cs.MA has exactly 1 arXiv signal despite 'agentic AI' dominating industry narrative and multiple agent SDKs shipping in 2025 (OpenAI Agents SDK, Claude Agent SDK, LangGraph). Academic multi-agent research isn't tracking industry product activity — current agent frameworks are engineering integrations, not research breakthroughs. If you're evaluating agent architectures, look at the PL and systems literature rather than cs.MA; the real work is happening in tooling repos, not research papers.",
+      "date_published": "2026-02-24T04:18:29.019Z",
+      "tags": [
+        "p0",
+        "divergence",
+        "arXiv",
+        "Reddit"
+      ],
+      "_deeptrend": {
+        "priority": "p0",
+        "insight_type": "divergence",
+        "confidence": 0.82,
+        "convergence": {
+          "source_count": 2,
+          "sources": [
+            "arXiv",
+            "Reddit"
+          ],
+          "trust_tiers": {
+            "raw": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "2026-02-24-insight-4",
+      "title": "Google Research output is 92% non-model work while OpenAI is 100% announcements",
+      "content_text": "Of 100 Google Research signals, only 8 relate to models — the rest is applied science, infrastructure, and domain research. Meanwhile OpenAI's 205 signals are almost entirely announcements and educational content ('learning': 16 signals). These two primary-tier sources have diverged into completely different content strategies: Google is publishing research breadth, OpenAI is publishing marketing depth. If you're tracking frontier model competition, neither research blog is the right signal source anymore — watch product launches and benchmark results directly.",
+      "date_published": "2026-02-24T04:18:29.019Z",
+      "tags": [
+        "p1",
+        "divergence",
+        "Google Research",
+        "OpenAI News"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "divergence",
+        "confidence": 0.8,
+        "convergence": {
+          "source_count": 2,
+          "sources": [
+            "Google Research",
+            "OpenAI News"
+          ],
+          "trust_tiers": {
+            "raw": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "2026-02-24-insight-5",
+      "title": "Computer vision maintains research parity with NLP despite 'language model era' framing",
+      "content_text": "cs.CV (8 signals) nearly matches cs.CL (11) on arXiv, and cs.CV cross-lists with cs.AI at a higher rate (6/8 = 75%) than cs.CL does (5/11 = 45%). Vision research is more deeply integrated with general AI work than language research is. The multimodal thesis is playing out in research activity patterns, not just product announcements. Researchers focused purely on text modalities are missing where roughly a third of frontier work is happening.",
+      "date_published": "2026-02-24T04:18:29.019Z",
       "tags": [
         "p1",
         "trend",
-        "reddit"
+        "arXiv"
+      ],
+      "_deeptrend": {
+        "priority": "p1",
+        "insight_type": "trend",
+        "confidence": 0.78,
+        "convergence": {
+          "source_count": 1,
+          "sources": [
+            "arXiv"
+          ],
+          "trust_tiers": {
+            "raw": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "2026-02-24-insight-6",
+      "title": "AI safety/alignment discourse invisible during active EU AI Act enforcement",
+      "content_text": "Zero cs.CY (computers & society) signals across all feeds, no safety-specific topics from any source, despite EU AI Act prohibited practices provisions being actively enforced since Feb 2025 and broader obligations phasing in now. Safety discourse has either migrated entirely to private governance channels and compliance consultancies, or genuinely cooled during a capabilities-dominated period. Check whether your safety-adjacent colleagues have pivoted to compliance work — the research-to-regulation pipeline may have absorbed the talent.",
+      "date_published": "2026-02-24T04:18:29.019Z",
+      "tags": [
+        "p0",
+        "divergence",
+        "arXiv",
+        "BAIR",
+        "Google Research"
+      ],
+      "_deeptrend": {
+        "priority": "p0",
+        "insight_type": "divergence",
+        "confidence": 0.76,
+        "convergence": {
+          "source_count": 3,
+          "sources": [
+            "arXiv",
+            "BAIR",
+            "Google Research"
+          ],
+          "trust_tiers": {
+            "raw": 3
+          }
+        }
+      }
+    },
+    {
+      "id": "2026-02-24-insight-7",
+      "title": "Reddit communities in discussion-heavy consolidation phase",
+      "content_text": "r/MachineLearning shows 14 discussion vs 9 research signals; r/LocalLLaMA has 8 discussion vs 3 news; r/OpenAI has 11 discussion vs 4 questions. High discussion-to-discovery ratios across all ML subreddits indicate crowd-tier sources are digesting existing developments, not surfacing new ones. This is characteristic of a plateau between disruptions — the last major shock has been absorbed and communities are waiting for the next inflection. Reduce weight on crowd-tier signals during consolidation phases; they'll echo existing narratives rather than discover new ones.",
+      "date_published": "2026-02-24T04:18:29.019Z",
+      "tags": [
+        "p2",
+        "divergence",
+        "Reddit"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "divergence",
+        "confidence": 0.72,
+        "convergence": {
+          "source_count": 1,
+          "sources": [
+            "Reddit"
+          ],
+          "trust_tiers": {
+            "raw": 1
+          }
+        }
+      }
+    },
+    {
+      "id": "2026-02-24-insight-8",
+      "title": "Hardware and compute economics absent from all feed tiers",
+      "content_text": "Zero signals about custom silicon, chip supply chains, training cost economics, or compute infrastructure despite these being active industry storylines (NVIDIA earnings cycles, custom accelerator deployments, DeepSeek's cost-efficiency narrative still reverberating). The curated feed sources have a blind spot here — hardware/infrastructure discussion lives in earnings calls, semiconductor trade press, and private Slack channels that no RSS feed captures. Researchers making infrastructure or self-hosting decisions need a dedicated hardware intelligence source.",
+      "date_published": "2026-02-24T04:18:29.019Z",
+      "tags": [
+        "p2",
+        "divergence",
+        "arXiv",
+        "Google Research",
+        "BAIR"
+      ],
+      "_deeptrend": {
+        "priority": "p2",
+        "insight_type": "divergence",
+        "confidence": 0.7,
+        "convergence": {
+          "source_count": 3,
+          "sources": [
+            "arXiv",
+            "Google Research",
+            "BAIR"
+          ],
+          "trust_tiers": {
+            "raw": 3
+          }
+        }
+      }
+    },
+    {
+      "id": "2026-02-24-insight-9",
+      "title": "cs.PL × cs.AI × cs.CR: formal verification entering AI security",
+      "content_text": "Programming languages researchers crossing into AI + cryptography/security is a non-obvious arXiv intersection appearing in this cycle. PL techniques — type systems, formal verification, proof assistants — being applied to AI security suggests 'provably safe AI' is transitioning from theoretical interest to active research programs. If you work on AI deployment in regulated environments, track cs.PL venues (PLDI, POPL); they may produce the verification frameworks that EU AI Act compliance will eventually require.",
+      "date_published": "2026-02-24T04:18:29.019Z",
+      "tags": [
+        "p1",
+        "trend",
+        "arXiv"
       ],
       "_deeptrend": {
         "priority": "p1",
@@ -84,7 +234,7 @@
         "convergence": {
           "source_count": 1,
           "sources": [
-            "reddit"
+            "arXiv"
           ],
           "trust_tiers": {
             "raw": 1
@@ -93,194 +243,26 @@
       }
     },
     {
-      "id": "2026-02-23-insight-4",
-      "title": "OpenAI primary channel near-silent (1 signal) during high community speculation",
-      "content_text": "OpenAI News produced exactly 1 signal (tagged 'longer' — likely a blog post) while r/OpenAI generated 16 community signals dominated by discussion and question threads. The community-to-primary signal ratio is 16:1. Historically, quiet primary channels paired with loud community speculation precede product announcements or pricing changes. Monitor for GPT-5 or o4 release signals in the next 1-2 cycles.",
-      "date_published": "2026-02-23T20:03:03.799Z",
-      "tags": [
-        "p1",
-        "divergence",
-        "openai-news",
-        "reddit"
-      ],
-      "_deeptrend": {
-        "priority": "p1",
-        "insight_type": "divergence",
-        "confidence": 0.6,
-        "convergence": {
-          "source_count": 2,
-          "sources": [
-            "openai-news",
-            "reddit"
-          ],
-          "trust_tiers": {
-            "primary": 1,
-            "raw": 1
-          }
-        }
-      }
-    },
-    {
-      "id": "2026-02-23-insight-5",
-      "title": "TechMeme all-business framing vs Reddit all-implementation framing",
-      "content_text": "TechMeme's 13 signals are tagged 'business' — every single one. Reddit's signals are tagged 'discussion', 'question', 'project'. The editor tier sees AI through a market/enterprise lens while the developer crowd is in pure build mode. When business narrative and technical reality diverge this cleanly, corrections follow — either products underdeliver on hype or technical capabilities outrun business models. Watch for which side adjusts.",
-      "date_published": "2026-02-23T20:03:03.799Z",
-      "tags": [
-        "p1",
-        "divergence",
-        "techmeme",
-        "reddit"
-      ],
-      "_deeptrend": {
-        "priority": "p1",
-        "insight_type": "divergence",
-        "confidence": 0.6,
-        "convergence": {
-          "source_count": 2,
-          "sources": [
-            "techmeme",
-            "reddit"
-          ],
-          "trust_tiers": {
-            "editor": 1,
-            "raw": 1
-          }
-        }
-      }
-    },
-    {
-      "id": "2026-02-23-insight-6",
-      "title": "Meme content emerging in r/singularity as AGI hype saturation indicator",
-      "content_text": "r/singularity produced 14 signals with a new 'meme' tag (velocity +100% from zero). Meme production is a reliable lagging indicator of mainstream saturation — discourse moves from 'is this real?' to cultural furniture. The singularity/AGI narrative may be peaking in the current hype cycle. Contrarian signal: what the memes mock often points to where the next real development hides.",
-      "date_published": "2026-02-23T20:03:03.799Z",
+      "id": "2026-02-24-insight-10",
+      "title": "Game-theoretic AI (cs.GT × cs.AI) has single signal despite agent deployment scaling",
+      "content_text": "Only 1 cs.GT × cs.AI signal despite game theory being foundational to multi-agent coordination, mechanism design for AI marketplaces, and competitive agent negotiation. As deployed agents begin transacting with each other through MCP and similar protocols, game-theoretic analysis of agent interactions becomes critical. This is likely underrepresented in feeds rather than underresearched — check AAAI, EC (Economics & Computation), and NeurIPS workshop proceedings directly for this thread.",
+      "date_published": "2026-02-24T04:18:29.019Z",
       "tags": [
         "p2",
-        "trend",
-        "reddit"
+        "divergence",
+        "arXiv"
       ],
       "_deeptrend": {
         "priority": "p2",
-        "insight_type": "trend",
-        "confidence": 0.55,
+        "insight_type": "divergence",
+        "confidence": 0.58,
         "convergence": {
           "source_count": 1,
           "sources": [
-            "reddit"
+            "arXiv"
           ],
           "trust_tiers": {
             "raw": 1
-          }
-        }
-      }
-    },
-    {
-      "id": "2026-02-23-insight-7",
-      "title": "DeepSeek and Chinese open-weight models absent from all English-language feeds",
-      "content_text": "Despite DeepSeek R1's disruption and Qwen establishing a strong open-weight position, zero signals reference Chinese-origin models across all six panel sources. Either the initial shock has been absorbed and normalized (models used without discussion), or there's a geographic attention bias in English-language feeds. If you're benchmarking open-weight: check Qwen and DeepSeek release pages directly — this panel may be blind to that cadence.",
-      "date_published": "2026-02-23T20:03:03.799Z",
-      "tags": [
-        "p2",
-        "divergence",
-        "reddit",
-        "hn-digest",
-        "simon-willison"
-      ],
-      "_deeptrend": {
-        "priority": "p2",
-        "insight_type": "divergence",
-        "confidence": 0.55,
-        "convergence": {
-          "source_count": 3,
-          "sources": [
-            "reddit",
-            "hn-digest",
-            "simon-willison"
-          ],
-          "trust_tiers": {
-            "raw": 1,
-            "crowd": 1,
-            "expert": 1
-          }
-        }
-      }
-    },
-    {
-      "id": "2026-02-23-insight-8",
-      "title": "Help-seeking and tutorial velocity surge across Reddit AI communities",
-      "content_text": "Question/help tags spiked +100% from zero across multiple subreddits (r/OpenAI 3 questions, r/LocalLLaMA 5 help threads), with tutorial content also appearing for the first time. This suggests a new practitioner cohort entering — likely triggered by recent tool releases or corporate AI mandates. Quality of community answers during onboarding waves creates persistent misconceptions that propagate for months.",
-      "date_published": "2026-02-23T20:03:03.799Z",
-      "tags": [
-        "p2",
-        "trend",
-        "reddit"
-      ],
-      "_deeptrend": {
-        "priority": "p2",
-        "insight_type": "trend",
-        "confidence": 0.55,
-        "convergence": {
-          "source_count": 1,
-          "sources": [
-            "reddit"
-          ],
-          "trust_tiers": {
-            "raw": 1
-          }
-        }
-      }
-    },
-    {
-      "id": "2026-02-23-insight-9",
-      "title": "MCP and agent-infrastructure tooling absent from developer feeds",
-      "content_text": "Neither HN Digest (5 developer-focused signals) nor Simon Willison (4 LLM-tools signals) mentioned MCP, agent frameworks, or tool-use infrastructure. Given MCP's rapid 2025 adoption and agent tooling in production, the absence from expert and crowd tiers suggests infrastructure-to-plumbing transition — it's no longer news, it's assumed. If you're still evaluating agent frameworks, the window for differentiated positioning is closing.",
-      "date_published": "2026-02-23T20:03:03.799Z",
-      "tags": [
-        "p2",
-        "divergence",
-        "hn-digest",
-        "simon-willison"
-      ],
-      "_deeptrend": {
-        "priority": "p2",
-        "insight_type": "divergence",
-        "confidence": 0.5,
-        "convergence": {
-          "source_count": 2,
-          "sources": [
-            "hn-digest",
-            "simon-willison"
-          ],
-          "trust_tiers": {
-            "crowd": 1,
-            "expert": 1
-          }
-        }
-      }
-    },
-    {
-      "id": "2026-02-23-insight-10",
-      "title": "Startup valuations entering Reddit technical AI discourse",
-      "content_text": "Both 'startups' and 'valuations' appeared as new velocity tags this cycle (+100% from zero), while TechMeme maintained all-business framing. Financial discussion bleeding from editor tier into technical communities is a phase indicator — when ML practitioners discuss money, it signals either a funding wave or growing bubble anxiety. Cross-tier convergence on business topics from both editor and raw tiers is worth tracking as a market sentiment proxy.",
-      "date_published": "2026-02-23T20:03:03.799Z",
-      "tags": [
-        "p2",
-        "trend",
-        "reddit",
-        "techmeme"
-      ],
-      "_deeptrend": {
-        "priority": "p2",
-        "insight_type": "trend",
-        "confidence": 0.5,
-        "convergence": {
-          "source_count": 2,
-          "sources": [
-            "reddit",
-            "techmeme"
-          ],
-          "trust_tiers": {
-            "raw": 1,
-            "editor": 1
           }
         }
       }
