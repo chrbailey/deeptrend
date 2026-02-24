@@ -1,67 +1,55 @@
 {
-  "updated": "2026-02-21T08:02:27.703Z",
+  "updated": "2026-02-23T20:03:03.799Z",
   "source": "https://chrbailey.github.io/deeptrend",
   "feed": "https://chrbailey.github.io/deeptrend/feed.json",
   "p0": [
     {
-      "topic": "Expert and primary tiers completely silent — 9 of 13 curated feeds produced zero signals",
+      "topic": "AI safety discourse absent across all six panel sources",
       "type": "divergence",
-      "confidence": 0.82,
-      "summary": "Simon Willison, Import AI, AlphaSignal, Last Week in AI, Ahead of AI, MarkTechPost, OpenAI News, Google Research, and BAIR all produced zero signals this cycle. Only 4 of 5 panel tiers are active (raw, crowd, editor, algorithm — no expert, no primary). When crowd and raw tiers are noisy but experts are silent, the discourse is unfiltered — there's no editorial layer interpreting events. Either verify feeds aren't broken, or note that this window's signals lack the expert curation that makes convergence meaningful. Treat all insights this cycle with lower confidence until expert commentary catches up.",
+      "confidence": 0.8,
+      "summary": "Zero signals about AI safety, alignment, governance, or responsible AI from any trust tier this cycle. Reddit's 60 signals span LocalLLaMA, singularity, OpenAI, and MachineLearning — all capabilities-focused. TechMeme's 13 editor-curated stories: zero safety framing. This isn't 'safety is quiet' — it's structurally gone from the conversation during active capabilities discussion. If you track safety-capabilities balance as a leading indicator, the ratio is currently undefined.",
       "sources": [
-        "Reddit",
-        "HN Digest",
-        "TechMeme",
-        "Google Trends",
-        "GitHub Trending"
-      ]
-    },
-    {
-      "topic": "Safety/alignment discourse absent while 'agency' and 'deployed' enter velocity",
-      "type": "divergence",
-      "confidence": 0.73,
-      "summary": "Zero safety, alignment, or governance signals across any tier, while 'deployed' (+100% from zero) and 'agency' (+100% from zero) both entered velocity simultaneously. Historically, deployment acceleration without concurrent safety discussion precedes regulatory or incident-driven corrections. The EU AI Act general-purpose AI obligations hit Aug 2025 — if agents are being deployed at scale without safety discourse, either compliance is being treated as solved (unlikely) or practitioners have decoupled safety from deployment conversations. If you're shipping agent systems, this gap is your risk surface.",
-      "sources": [
-        "Reddit",
-        "HN Digest",
-        "Google Trends"
+        "reddit",
+        "techmeme",
+        "hn-digest",
+        "simon-willison"
       ]
     }
   ],
   "p1": [
     {
-      "topic": "LocalLLaMA community maturation — 'resources' overtaking 'discussion' as top tag",
+      "topic": "LocalLLaMA outpacing r/OpenAI in signal volume and expert convergence",
       "type": "divergence",
       "confidence": 0.7,
       "sources": [
-        "Reddit"
+        "reddit",
+        "simon-willison"
       ]
     },
     {
-      "topic": "TechMeme (editor) covering Claude — crowd/raw tiers don't match",
-      "type": "divergence",
-      "confidence": 0.68,
-      "sources": [
-        "TechMeme",
-        "Reddit",
-        "Google Trends"
-      ]
-    },
-    {
-      "topic": "Effect-TS trending on GitHub — typed algebraic effects entering agent tooling ecosystem",
+      "topic": "ML subreddit project-sharing velocity spike (+300%)",
       "type": "trend",
       "confidence": 0.65,
       "sources": [
-        "GitHub Trending"
+        "reddit"
       ]
     },
     {
-      "topic": "'news' velocity +400% — discourse shifted from analysis to breaking events",
-      "type": "trend",
-      "confidence": 0.62,
+      "topic": "OpenAI primary channel near-silent (1 signal) during high community speculation",
+      "type": "divergence",
+      "confidence": 0.6,
       "sources": [
-        "Reddit",
-        "HN Digest"
+        "openai-news",
+        "reddit"
+      ]
+    },
+    {
+      "topic": "TechMeme all-business framing vs Reddit all-implementation framing",
+      "type": "divergence",
+      "confidence": 0.6,
+      "sources": [
+        "techmeme",
+        "reddit"
       ]
     }
   ]
