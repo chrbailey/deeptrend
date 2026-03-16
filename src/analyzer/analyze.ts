@@ -13,6 +13,7 @@ const SOURCE_TRUST: Record<string, TrustTier | 'raw'> = {
   'arxiv': 'raw',
   'moltbook': 'raw',
   'twitter': 'raw',
+  'lex-intel': 'raw',
 };
 
 // Build trust map from curated feed configs
@@ -27,6 +28,7 @@ const SOURCE_NAMES: Record<string, string> = {
   'arxiv': 'arXiv',
   'moltbook': 'Moltbook',
   'twitter': 'X/Twitter',
+  'lex-intel': 'Lex Intel (Chinese AI)',
 };
 
 for (const feed of CURATED_FEEDS) {
@@ -40,6 +42,7 @@ const SOURCE_ANGLES: Record<string, string> = {
   'arxiv': 'academic preprints',
   'moltbook': 'AI agent discussions',
   'twitter': 'real-time social media',
+  'lex-intel': 'Chinese-language AI news from 11 sources (36Kr, Huxiu, CSDN, Caixin, etc.)',
 };
 
 for (const feed of CURATED_FEEDS) {

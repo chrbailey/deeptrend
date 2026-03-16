@@ -2,7 +2,8 @@ export interface RawSignal {
   source: 'google-trends' | 'reddit' | 'arxiv' | 'moltbook' | 'twitter'
     | 'techmeme' | 'hn-digest' | 'simon-willison' | 'import-ai'
     | 'alphasignal' | 'last-week-ai' | 'ahead-of-ai' | 'marktechpost'
-    | 'github-trending' | 'hf-papers' | 'openai-news' | 'google-research' | 'bair';
+    | 'github-trending' | 'hf-papers' | 'openai-news' | 'google-research' | 'bair'
+    | 'lex-intel';
   source_id: string;
   title: string;
   content: string;
