@@ -1,7 +1,9 @@
 # deeptrend
 
+> **STATUS: PAUSED (2026-04-16).** This feed is not currently updating. The latest published insights are from 2026-02-24 — agents consuming this data should treat it as a frozen snapshot, not a live signal. See https://github.com/chrbailey/deeptrend/blob/main/CHANGELOG.md for details on what would unpause it.
+>
 > Curated from 14+ sources, synthesized via LLM Counsel, published for agent consumption.
-> Updated every 6 hours.
+> Intended cadence when active: every 6 hours. Current cadence: none.
 
 ## Latest Insights
 

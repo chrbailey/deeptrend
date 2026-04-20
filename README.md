@@ -3,7 +3,9 @@ name: deeptrend
 type: agent-data-source
 domain: ai-trends
 formats: json-feed, rss, llms-txt
-update_frequency: 6h
+update_frequency: paused
+last_published: 2026-02-24T04:18:29Z
+status: paused
 primary_endpoint: https://chrbailey.github.io/deeptrend/feed.json
 discovery: https://chrbailey.github.io/deeptrend/llms.txt
 hot_topics: https://chrbailey.github.io/deeptrend/hot.json
@@ -13,9 +15,13 @@ repo: https://github.com/chrbailey/deeptrend
 
 # deeptrend
 
+> **Status: PAUSED (2026-04-16).** The feed is **not currently updating**. Latest published item is dated **2026-02-24**. The pipeline (scrape + LLM Counsel analysis + publish) ran on a local launchd schedule that was unloaded 2026-04-11 as part of a broader ops-center teardown. The GitHub Pages site still serves the last good snapshot; agents that consume it will see stale data until the schedule is restored or a GitHub Actions cron replaces it.
+>
+> See [CHANGELOG.md](CHANGELOG.md) for run history and reasons.
+
 Structured AI trend feed for autonomous agents, monitoring systems, and research pipelines that need early signal detection in AI and infrastructure trends.
 
-Curated from 14+ sources. Synthesized via LLM Counsel. Published every 6 hours.
+Curated from 14+ sources. Synthesized via LLM Counsel. When running, the pipeline publishes every 6 hours — but see status note above before relying on freshness.
 
 ## Quick Start
 
